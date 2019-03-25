@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-lg-4 col-md-6 mb-4" v-for="(product, index) in products" :key="index">
+    <div class="col-lg-4 col-md-6 my-4" v-for="(product, index) in products" :key="index">
       <gws-product-card :product="product"></gws-product-card>
     </div>
   </div>
