@@ -3,7 +3,7 @@
     <gws-header></gws-header>
     <div class="container">
       <div class="row">
-        <div class="col">
+        <div class="col py-3">
           <router-view/>
         </div>
       </div>
