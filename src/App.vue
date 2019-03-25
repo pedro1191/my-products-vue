@@ -1,22 +1,21 @@
 <template>
-  <div id="app">
+  <div id="app" class="d-flex flex-column h-100">
     <gws-header></gws-header>
-    <div class="container">
-      <div class="row">
-        <div class="col py-3">
-          <router-view/>
-        </div>
-      </div>
-    </div>
+    <main role="main" class="flex-shrink-0">
+      <router-view/>
+    </main>
+    <gws-footer></gws-footer>
   </div>
 </template>
 
 <script>
 import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
 
 export default {
   components: {
-    gwsHeader: Header
+    gwsHeader: Header,
+    gwsFooter: Footer
   }
 }
 </script>
@@ -29,7 +28,7 @@ export default {
   color: #2c3e50;
 }
 
-body {
+main > .container {
   padding-top: 76px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="container">
     <div class="row">
       <div class="col-lg-3">
         <gws-categories :categories="categories"></gws-categories>
