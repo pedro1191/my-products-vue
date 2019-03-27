@@ -13,18 +13,50 @@
 
 <script>
 // @ is an alias to /src
+import axios from '@/axios-default'
 import Categories from '@/components/Categories.vue'
 
 export default {
-  name: 'home',
+  created () {
+    this.getCategories()
+  },
   data () {
     return {
-      categories: [
-        { id: 1, name: 'Category 1' },
-        { id: 2, name: 'Category 2' },
-        { id: 3, name: 'Category 3' },
-        { id: 4, name: 'Category 4' }
-      ]
+      categories: [],
+      modal: {
+        loading: false,
+        error: false,
+        message: null
+      }
+    }
+  },
+  methods: {
+    getCategories () {
+      this.modal.loading = true
+
+      axios.get('/categories')
+        .then(response => {
+          this.modal.loading = false
+          this.categories = response.data.data
+        })
+        .catch(error => {
+          this.onHttpRequestError(error)
+        })
+    },
+    onHttpRequestError (error) {
+      this.modal.loading = false
+      this.modal.error = true
+      console.log(error.response)
+
+      switch (error.response.status) {
+        default:
+          this.modal.message = 'Oops! Something went wrong.'
+      }
+    },
+    onModalClose () {
+      this.modal.loading = false
+      this.modal.message = null
+      this.modal.error = false
     }
   },
   components: {

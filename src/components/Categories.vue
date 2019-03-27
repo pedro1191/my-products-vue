@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="my-4">{{ title }}</h1>
-    <ul class="list-group">
+    <ul class="list-group" v-if="categories.length > 0">
       <gws-category
         v-for="(category, index) in categories"
         :key="index"
@@ -9,6 +9,7 @@
         >
       </gws-category>
     </ul>
+    <h4 class="text-center text-muted" v-else>No categories found =/</h4>
   </div>
 </template>
 

@@ -10,7 +10,7 @@
       <h4 class="card-title">
         <router-link :to="{ name: 'productsSingle', params: { id: product.id } }">{{ product.name }}</router-link>
       </h4>
-      <h5>$24.99</h5>
+      <h5>{{ product.category.data.name }}</h5>
       <p class="card-text">{{ smallDescription }}</p>
     </div>
   </div>
