@@ -12,11 +12,11 @@
 </template>
 
 <script>
-import SocialMedia from "@/components/SocialMedia.vue"
+import SocialMedia from '@/components/SocialMedia.vue'
 
 export default {
   computed: {
-    thisYear() {
+    thisYear () {
       return new Date().getFullYear()
     }
   },
