@@ -1,10 +1,10 @@
 <template>
   <ol class="carousel-indicators">
     <gws-carousel-indicator
-      v-for="i in numberOfIndicators"
-      :key="i"
+      v-for="(i, index) in numberOfIndicators"
+      :key="index"
       :index="i"
-      :class="{ active: i === 0 }"
+      :class="{ active: index === activeIndex }"
     >
     </gws-carousel-indicator>
   </ol>
@@ -16,6 +16,10 @@ import CarouselIndicator from '@/components/Carousel/Indicator.vue'
 export default {
   props: {
     numberOfIndicators: {
+      type: Number,
+      required: true
+    },
+    activeIndex: {
       type: Number,
       required: true
     }

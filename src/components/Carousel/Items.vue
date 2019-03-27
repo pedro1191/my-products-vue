@@ -5,7 +5,7 @@
       :key="index"
       :image="item.image"
       :index="index"
-      :class="{ active: index === 0 }"
+      :class="{ active: index === activeIndex }"
     >
     </gws-carousel-item>
   </div>
@@ -18,6 +18,10 @@ export default {
   props: {
     items: {
       type: Array,
+      required: true
+    },
+    activeIndex: {
+      type: Number,
       required: true
     }
   },
