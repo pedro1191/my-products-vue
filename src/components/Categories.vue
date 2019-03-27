@@ -1,14 +1,13 @@
 <template>
   <div>
-    <div @click="onCategoriesTitleClick">
-      <h1 class="my-4">
-        {{ title }}
-        <span
-          class="ml-3 oi"
-          :class="{ 'oi-plus': !showCategories, 'oi-minus': showCategories }"
-        >
-        </span>
-      </h1>
+    <div class="title my-4"
+      @click="onCategoriesTitleClick">
+      <h1>{{ title }}</h1>
+      <i
+        class="ml-3 fas"
+        :class="{ 'fa-plus': !showCategories, 'fa-minus': showCategories }"
+      >
+      </i>
     </div>
     <div v-if="showCategories">
       <ul class="list-group" v-if="categories.length > 0">
@@ -55,11 +54,14 @@ export default {
 </script>
 
 <style scoped>
-h1 {
+.title {
+  display: flex;
+  align-items: center;
+  align-content: center;
   cursor: pointer;
 }
 
-h1 span {
+.title i {
   font-size: 1.5rem;
 }
 </style>
