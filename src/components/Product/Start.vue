@@ -1,6 +1,12 @@
 <template>
   <div>
     <gws-products-cards :products="products" />
+    <gws-pagination
+      v-if="pagination.total_pages > 1"
+      :pagination="pagination"
+      @onLinkClicked="changePage($event)"
+    >
+    </gws-pagination>
     <gws-modal v-if="modal.error">
       <div slot="header"> My Products</div>
       <div slot="body">{{ modal.message }}</div>
@@ -17,14 +23,17 @@ import axios from '@/axios-default'
 import ProductsCards from '@/components/Product/Cards.vue'
 import Modal from '@/components/Modal.vue'
 import Spinner from '@/components/Spinner.vue'
+import Pagination from '@/components/Pagination.vue'
 
 export default {
   created () {
-    this.getProducts(this.$route.query.category)
+    this.getProducts()
   },
   data () {
     return {
       products: [],
+      pagination: {},
+      current_page: 1,
       modal: {
         loading: false,
         error: false,
@@ -36,7 +45,8 @@ export default {
     urlParams () {
       const params = {
         params: {
-          include: 'category'
+          include: 'category',
+          page: this.current_page
         }
       }
 
@@ -49,16 +59,18 @@ export default {
   },
   watch: {
     '$route.query.category': function (value) {
-      this.getProducts(value)
+      this.current_page = 1
+      this.getProducts()
     }
   },
   methods: {
-    getProducts (category) {
+    getProducts () {
       this.modal.loading = true
 
       axios.get('/products', this.urlParams)
         .then(response => {
           this.products = response.data.data
+          this.pagination = response.data.meta.pagination
           this.modal.loading = false
         })
         .catch(error => {
@@ -79,12 +91,17 @@ export default {
       this.modal.loading = false
       this.modal.error = false
       this.modal.message = null
+    },
+    changePage (page) {
+      this.current_page = page
+      this.getProducts()
     }
   },
   components: {
     gwsProductsCards: ProductsCards,
     gwsModal: Modal,
-    gwsSpinner: Spinner
+    gwsSpinner: Spinner,
+    gwsPagination: Pagination
   }
 }
 </script>
