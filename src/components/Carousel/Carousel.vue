@@ -8,19 +8,19 @@
 </template>
 
 <script>
-import CarouselIndicators from '@/components/Carousel/Indicators.vue'
-import CarouselItems from '@/components/Carousel/Items.vue'
-import CarouselPrevControl from '@/components/Carousel/PrevControl.vue'
-import CarouselNextControl from '@/components/Carousel/NextControl.vue'
-import gwsBanner1 from '@/assets/banner1.jpeg'
-import gwsBanner2 from '@/assets/banner2.jpeg'
-import gwsBanner3 from '@/assets/banner3.jpeg'
+import CarouselIndicators from './Indicators.vue';
+import CarouselItems from './Items.vue';
+import CarouselPrevControl from './PrevControl.vue';
+import CarouselNextControl from './NextControl.vue';
+import gwsBanner1 from '@/assets/banner1.jpeg';
+import gwsBanner2 from '@/assets/banner2.jpeg';
+import gwsBanner3 from '@/assets/banner3.jpeg';
 
 export default {
-  created () {
-    this.setCarouselInterval()
+  created() {
+    this.setCarouselInterval();
   },
-  data () {
+  data() {
     return {
       carouselItems: [
         { image: gwsBanner1 },
@@ -29,33 +29,33 @@ export default {
       ],
       activeIndex: 0,
       carouselInterval: null
-    }
+    };
   },
   methods: {
-    setCarouselInterval () {
-      clearInterval(this.carouselInterval)
+    setCarouselInterval() {
+      clearInterval(this.carouselInterval);
 
       this.carouselInterval = setInterval(() => {
-        this.setNextItem()
-      }, 5000)
+        this.setNextItem();
+      }, 5000);
     },
-    onPreviousClick () {
-      if ((this.activeIndex - 1) < 0) {
-        this.activeIndex = this.carouselItems.length - 1
+    onPreviousClick() {
+      if (this.activeIndex - 1 < 0) {
+        this.activeIndex = this.carouselItems.length - 1;
       } else {
-        this.activeIndex--
+        this.activeIndex--;
       }
-      this.setCarouselInterval()
+      this.setCarouselInterval();
     },
-    onNextClick () {
-      this.setNextItem()
-      this.setCarouselInterval()
+    onNextClick() {
+      this.setNextItem();
+      this.setCarouselInterval();
     },
-    setNextItem () {
-      if (this.activeIndex >= (this.carouselItems.length - 1)) {
-        this.activeIndex = 0
+    setNextItem() {
+      if (this.activeIndex >= this.carouselItems.length - 1) {
+        this.activeIndex = 0;
       } else {
-        this.activeIndex++
+        this.activeIndex++;
       }
     }
   },
@@ -65,5 +65,5 @@ export default {
     gwsCarouselPrevControl: CarouselPrevControl,
     gwsCarouselNextControl: CarouselNextControl
   }
-}
+};
 </script>

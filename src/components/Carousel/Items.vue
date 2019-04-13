@@ -1,18 +1,11 @@
 <template>
   <div class="carousel-inner" role="listbox">
-    <gws-carousel-item
-      v-for="(item, index) in items"
-      :key="index"
-      :image="item.image"
-      :index="index"
-      :class="{ active: index === activeIndex }"
-    >
-    </gws-carousel-item>
+    <gws-carousel-item v-for="(item, index) in items" :key="index" :image="item.image" :index="index" :class="{ active: index === activeIndex }"></gws-carousel-item>
   </div>
 </template>
 
 <script>
-import CarouselItem from '@/components/Carousel/Item.vue'
+import CarouselItem from './Item.vue';
 
 export default {
   props: {
@@ -28,5 +21,5 @@ export default {
   components: {
     gwsCarouselItem: CarouselItem
   }
-}
+};
 </script>
