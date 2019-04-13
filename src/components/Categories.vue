@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import Category from '@/components/Category.vue';
+import Category from './Category.vue';
 
 export default {
   props: {
