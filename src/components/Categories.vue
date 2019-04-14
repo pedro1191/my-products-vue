@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="categories">
     <div class="title my-4" @click="onCategoriesTitleClick">
       <h2>{{ title }}</h2>
       <i class="ml-3 fas" :class="{ 'fa-plus': !showCategories, 'fa-minus': showCategories }"></i>
@@ -44,6 +44,10 @@ export default {
 </script>
 
 <style scoped>
+.categories {
+  position: fixed;
+}
+
 .title {
   display: flex;
   align-items: center;
