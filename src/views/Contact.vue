@@ -169,6 +169,7 @@ export default {
         .post('/contacts', data)
         .then(response => {
           this.onStopLoading();
+          console.log(response.data);
           this.modal.success = true;
           this.modal.message = 'Message sent successfully';
           this.resetForm();
