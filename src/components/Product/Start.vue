@@ -5,9 +5,11 @@
     <gws-pagination v-if="pagination.total_pages > 1" :pagination="pagination" @onLinkClicked="changePage($event)"></gws-pagination>
 
     <gws-modal v-if="modal.error">
-      <div slot="header"> My Food</div>
-      <div slot="body">{{ modal.message }}</div>
-      <button class="btn btn-primary" @click="onModalClose" slot="footer">OK</button>
+      <div class="local-modal-header" slot="header"> My Food</div>
+      <div class="local-modal-body" slot="body">{{ modal.message }}</div>
+      <div class="local-modal-footer" slot="footer">
+        <button class="btn btn-secondary" @click="onModalClose">OK</button>
+      </div>
     </gws-modal>
   </div>
 </template>
@@ -98,3 +100,23 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.local-modal-header,
+.local-modal-body,
+.local-modal-footer {
+  padding: 0.5rem;
+  background-color: #fff;
+  width: 100%;
+}
+
+.local-modal-header {
+  text-align: left;
+  color: #dc3545;
+  font-weight: bold;
+}
+
+.local-modal-footer {
+  text-align: right;
+}
+</style>
