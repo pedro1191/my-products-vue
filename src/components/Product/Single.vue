@@ -18,74 +18,71 @@
     </div>
 
     <gws-modal v-if="modal.error">
-      <div slot="header"> My Products</div>
+      <div slot="header"> My Food</div>
       <div slot="body">{{ modal.message }}</div>
       <button class="btn btn-primary" @click="onModalClose" slot="footer">OK</button>
-    </gws-modal>
-    <gws-modal v-if="modal.loading">
-      <gws-spinner slot="body"></gws-spinner>
     </gws-modal>
 
   </div>
 </template>
 
 <script>
-import axios from '@/axios-default'
-import Modal from '@/components/Modal.vue'
-import Spinner from '@/components/Spinner.vue'
+import axios from '@/axios-default';
+import Modal from '../Modal.vue';
 
 export default {
-  created () {
-    this.getProduct()
+  created() {
+    this.getProduct();
   },
-  data () {
+  data() {
     return {
       product: null,
       modal: {
-        loading: false,
         error: false,
         message: null
       }
-    }
+    };
   },
   methods: {
-    getProduct () {
-      this.modal.loading = true
+    getProduct() {
+      this.$store.dispatch('setLoading', true);
 
-      axios.get(`/products/${this.$route.params.id}`, { params: { include: 'category' } })
+      axios
+        .get(`/products/${this.$route.params.id}`, {
+          params: { include: 'category' }
+        })
         .then(response => {
-          console.log(response.data)
-          this.modal.loading = false
-          this.product = response.data.data
+          this.onStopLoading();
+          this.product = response.data.data;
         })
         .catch(error => {
-          this.onHttpRequestError(error)
-        })
+          this.onHttpRequestError(error);
+        });
     },
-    onHttpRequestError (error) {
-      this.modal.loading = false
-      console.log(error.response)
+    onHttpRequestError(error) {
+      this.onStopLoading();
 
       switch (error.response.status) {
         case 404:
-          this.product = null
-          break
+          this.product = null;
+          break;
         default:
-          this.modal.error = true
-          this.modal.message = 'Oops! Something went wrong.'
+          this.modal.error = true;
+          this.modal.message = 'Oops! Something went wrong.';
       }
     },
-    onModalClose () {
-      this.modal.loading = false
-      this.modal.error = false
-      this.modal.message = null
+    onStopLoading() {
+      this.$store.dispatch('setLoading', false);
+    },
+    onModalClose() {
+      this.modal.error = false;
+      this.modal.message = null;
     }
   },
   components: {
-    gwsModal: Modal,
-    gwsSpinner: Spinner
+    gwsModal: Modal
   }
-}
+};
 </script>
 
 <style scoped>

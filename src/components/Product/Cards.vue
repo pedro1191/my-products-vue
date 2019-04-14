@@ -1,10 +1,6 @@
 <template>
   <div class="row" v-if="products.length > 0">
-    <div
-      class="col-lg-4 col-md-6 my-4"
-      v-for="(product, index) in products"
-      :key="index"
-    >
+    <div class="col-lg-4 col-md-6 my-4" v-for="(product, index) in products" :key="index">
       <gws-product-card :product="product"></gws-product-card>
     </div>
   </div>
@@ -16,7 +12,7 @@
 </template>
 
 <script>
-import ProductCard from '@/components/Product/Card.vue'
+import ProductCard from './Card.vue';
 
 export default {
   props: {
@@ -28,5 +24,5 @@ export default {
   components: {
     gwsProductCard: ProductCard
   }
-}
+};
 </script>
