@@ -1,23 +1,54 @@
 <template>
   <div id="app" class="d-flex flex-column h-100">
-    <gws-header></gws-header>
+    <gws-navbar></gws-navbar>
+
     <main role="main" class="flex-shrink-0">
-      <router-view/>
+      <router-view />
     </main>
+
     <gws-footer></gws-footer>
+
+    <gws-modal v-if="isLoading">
+      <gws-spinner slot="body"></gws-spinner>
+    </gws-modal>
   </div>
 </template>
 
 <script>
-import Header from '@/components/Header.vue'
-import Footer from '@/components/Footer.vue'
+import Navbar from './components/Navbar.vue';
+import Footer from './components/Footer.vue';
+import Modal from './components/Modal.vue';
+import Spinner from './components/Spinner.vue';
 
 export default {
+  mounted() {
+    this.addResizeEventListener();
+    this.$store.dispatch('getCategories');
+  },
+  computed: {
+    isLoading: function() {
+      return this.$store.getters.isLoading;
+    }
+  },
+  methods: {
+    addResizeEventListener: function() {
+      this.$nextTick(() => {
+        window.addEventListener('resize', () => {
+          this.$store.dispatch(
+            'setCurrentScreenWidth',
+            window.innerWidth || window.document.documentElement.clientWidth
+          );
+        });
+      });
+    }
+  },
   components: {
-    gwsHeader: Header,
-    gwsFooter: Footer
+    gwsNavbar: Navbar,
+    gwsFooter: Footer,
+    gwsModal: Modal,
+    gwsSpinner: Spinner
   }
-}
+};
 </script>
 
 <style>
