@@ -65,21 +65,21 @@ export default {
   data() {
     return {
       form: {
-        name: null,
-        email: null,
-        phone: null,
-        message: null
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
       },
       formValidationMessages: {
-        name: null,
-        email: null,
-        phone: null,
-        message: null
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
       },
       modal: {
         success: false,
         error: false,
-        message: null
+        message: ''
       }
     };
   },
@@ -109,7 +109,7 @@ export default {
       } else if (!this.$v.form.name.required) {
         this.formValidationMessages.name = 'The name field is required.';
       } else {
-        this.formValidationMessages.name = null;
+        this.formValidationMessages.name = '';
       }
     },
     formEmail: function() {
@@ -126,7 +126,7 @@ export default {
         this.formValidationMessages.email =
           'The email must be a valid email address.';
       } else {
-        this.formValidationMessages.email = null;
+        this.formValidationMessages.email = '';
       }
     },
     formPhone: function() {
@@ -136,7 +136,7 @@ export default {
       if (!this.$v.form.phone.phoneRegex) {
         this.formValidationMessages.phone = 'The phone format is invalid.';
       } else {
-        this.formValidationMessages.phone = null;
+        this.formValidationMessages.phone = '';
       }
     },
     formMessage: function() {
@@ -150,7 +150,7 @@ export default {
       } else if (!this.$v.form.message.required) {
         this.formValidationMessages.message = 'The message field is required.';
       } else {
-        this.formValidationMessages.message = null;
+        this.formValidationMessages.message = '';
       }
     }
   },
@@ -199,16 +199,16 @@ export default {
       this.$store.dispatch('setLoading', false);
     },
     onModalClose() {
-      this.modal.message = null;
+      this.modal.message = '';
       this.modal.error = false;
       this.modal.success = false;
     },
     resetForm() {
       this.$v.$reset();
-      this.form.name = null;
-      this.form.email = null;
-      this.form.phone = null;
-      this.form.message = null;
+      this.form.name = '';
+      this.form.email = '';
+      this.form.phone = '';
+      this.form.message = '';
     }
   },
   validations: {

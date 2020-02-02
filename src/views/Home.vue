@@ -36,7 +36,7 @@ export default {
       products: [],
       modal: {
         error: false,
-        message: null
+        message: ''
       }
     };
   },
@@ -81,7 +81,7 @@ export default {
       this.$store.dispatch('setLoading', false);
     },
     onModalClose() {
-      this.modal.message = null;
+      this.modal.message = '';
       this.modal.error = false;
     }
   },

@@ -38,10 +38,10 @@ export default {
   },
   data() {
     return {
-      product: null,
+      product: undefined,
       modal: {
         error: false,
-        message: null
+        message: ''
       }
     };
   },
@@ -66,7 +66,7 @@ export default {
 
       switch (error.response.status) {
         case 404:
-          this.product = null;
+          this.product = undefined;
           break;
         default:
           this.modal.error = true;
@@ -78,7 +78,7 @@ export default {
     },
     onModalClose() {
       this.modal.error = false;
-      this.modal.message = null;
+      this.modal.message = '';
     }
   },
   components: {

@@ -31,7 +31,7 @@ export default {
       current_page: 1,
       modal: {
         error: false,
-        message: null
+        message: ''
       }
     };
   },
@@ -86,7 +86,7 @@ export default {
     },
     onModalClose() {
       this.modal.error = false;
-      this.modal.message = null;
+      this.modal.message = '';
     },
     changePage(page) {
       this.current_page = page;

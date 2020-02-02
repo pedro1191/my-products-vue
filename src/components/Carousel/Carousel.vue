@@ -28,7 +28,7 @@ export default {
         { image: gwsBanner3 }
       ],
       activeIndex: 0,
-      carouselInterval: null
+      carouselInterval: 0
     };
   },
   methods: {
