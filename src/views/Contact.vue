@@ -167,9 +167,8 @@ export default {
 
       axios
         .post('/contacts', data)
-        .then(response => {
+        .then(() => {
           this.onStopLoading();
-          console.log(response.data);
           this.modal.success = true;
           this.modal.message = 'Message sent successfully';
           this.resetForm();

@@ -32,7 +32,7 @@ export default new Vuex.Store({
         })
         .catch(error => {
           dispatch('setLoading', false);
-          console.log(error.response);
+          console.log(error.response); // eslint-disable-line no-console
         })
     },
     setLoading({ commit }, isLoading) {
