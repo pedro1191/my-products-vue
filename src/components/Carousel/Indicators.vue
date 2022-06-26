@@ -1,6 +1,12 @@
 <template>
   <ol class="carousel-indicators">
-    <gws-carousel-indicator v-for="(i, index) in numberOfIndicators" :key="index" :index="i" :class="{ active: index === activeIndex }"></gws-carousel-indicator>
+    <gws-carousel-indicator
+      v-for="(i, index) in numberOfIndicators"
+      :key="index"
+      :index="i"
+      :class="{ active: index === activeIndex }"
+    >
+    </gws-carousel-indicator>
   </ol>
 </template>
 
@@ -8,18 +14,19 @@
 import CarouselIndicator from './Indicator.vue';
 
 export default {
+  name: 'AppIndicators',
+  components: {
+    gwsCarouselIndicator: CarouselIndicator,
+  },
   props: {
     numberOfIndicators: {
       type: Number,
-      required: true
+      required: true,
     },
     activeIndex: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
-  components: {
-    gwsCarouselIndicator: CarouselIndicator
-  }
 };
 </script>

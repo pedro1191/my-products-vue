@@ -11,11 +11,17 @@
     </div>
 
     <gws-modal v-if="modal.error">
-      <div class="local-modal-header" slot="header"> My Food</div>
-      <div class="local-modal-body" slot="body">{{ modal.message }}</div>
-      <div class="local-modal-footer" slot="footer">
-        <button class="btn btn-secondary" @click="onModalClose">OK</button>
-      </div>
+      <template v-slot:header>
+        <div class="local-modal-header">My Food</div>
+      </template>
+      <template v-slot:body>
+        <div class="local-modal-body">{{ modal.message }}</div>
+      </template>
+      <template v-slot:footer>
+        <div class="local-modal-footer">
+          <button class="btn btn-secondary" @click="onModalClose">OK</button>
+        </div>
+      </template>
     </gws-modal>
   </div>
 </template>
@@ -28,25 +34,32 @@ import ProductsCards from '../components/Product/Cards.vue';
 import Modal from '../components/Modal.vue';
 
 export default {
-  created() {
-    this.getProducts();
+  name: 'AppHome',
+  components: {
+    gwsCategories: Categories,
+    gwsSlider: Slider,
+    gwsProductsCards: ProductsCards,
+    gwsModal: Modal,
   },
   data() {
     return {
       products: [],
       modal: {
         error: false,
-        message: ''
-      }
+        message: '',
+      },
     };
   },
   computed: {
-    showCategoriesMenu: function() {
+    showCategoriesMenu: function () {
       return !this.$store.getters.isASmallDevice;
     },
-    categories: function() {
+    categories: function () {
       return this.$store.getters.categories;
-    }
+    },
+  },
+  created() {
+    this.getProducts();
   },
   methods: {
     getProducts() {
@@ -54,17 +67,17 @@ export default {
 
       const params = {
         params: {
-          include: 'category'
-        }
+          include: 'category',
+        },
       };
 
       axios
         .get('/products', params)
-        .then(response => {
+        .then((response) => {
           this.onStopLoading();
           this.products = response.data.data;
         })
-        .catch(error => {
+        .catch((error) => {
           this.onHttpRequestError(error);
         });
     },
@@ -83,14 +96,8 @@ export default {
     onModalClose() {
       this.modal.message = '';
       this.modal.error = false;
-    }
+    },
   },
-  components: {
-    gwsCategories: Categories,
-    gwsSlider: Slider,
-    gwsProductsCards: ProductsCards,
-    gwsModal: Modal
-  }
 };
 </script>
 

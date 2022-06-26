@@ -1,46 +1,12 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-import axios from './axios-default';
+import { createStore } from 'vuex';
+import axios from '../axios-default';
 
-Vue.use(Vuex);
-
-export default new Vuex.Store({
+export default createStore({
   state: {
     thingsLoading: 0,
     categories: [],
-    screenWidth: (window.innerWidth || window.document.documentElement.clientWidth)
-  },
-  mutations: {
-    setCategories(state, categories) {
-      state.categories = categories;
-    },
-    setLoading(state, isLoading) {
-      isLoading ? state.thingsLoading++ : state.thingsLoading--;
-    },
-    setCurrentScreenWidth(state, screenWidth) {
-      state.screenWidth = screenWidth;
-    }
-  },
-  actions: {
-    getCategories({ commit, dispatch }) {
-      dispatch('setLoading', true);
-
-      axios.get('/categories')
-        .then(response => {
-          dispatch('setLoading', false);
-          commit('setCategories', response.data.data);
-        })
-        .catch(error => {
-          dispatch('setLoading', false);
-          console.log(error.response); // eslint-disable-line no-console
-        })
-    },
-    setLoading({ commit }, isLoading) {
-      commit('setLoading', isLoading);
-    },
-    setCurrentScreenWidth({ commit }, screenWidth) {
-      commit('setCurrentScreenWidth', screenWidth);
-    }
+    screenWidth:
+      window.innerWidth || window.document.documentElement.clientWidth,
   },
   getters: {
     isASmallDevice(state) {
@@ -51,6 +17,39 @@ export default new Vuex.Store({
     },
     categories(state) {
       return state.categories;
-    }
-  }
+    },
+  },
+  mutations: {
+    setCategories(state, categories) {
+      state.categories = categories;
+    },
+    setLoading(state, isLoading) {
+      isLoading ? state.thingsLoading++ : state.thingsLoading--;
+    },
+    setCurrentScreenWidth(state, screenWidth) {
+      state.screenWidth = screenWidth;
+    },
+  },
+  actions: {
+    getCategories({ commit, dispatch }) {
+      dispatch('setLoading', true);
+
+      axios
+        .get('/categories')
+        .then((response) => {
+          dispatch('setLoading', false);
+          commit('setCategories', response.data.data);
+        })
+        .catch(() => {
+          dispatch('setLoading', false);
+        });
+    },
+    setLoading({ commit }, isLoading) {
+      commit('setLoading', isLoading);
+    },
+    setCurrentScreenWidth({ commit }, screenWidth) {
+      commit('setCurrentScreenWidth', screenWidth);
+    },
+  },
+  modules: {},
 });

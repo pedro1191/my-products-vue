@@ -15,16 +15,17 @@
 import Categories from '@/components/Categories.vue';
 
 export default {
+  name: 'AppProduct',
+  components: {
+    gwsCategories: Categories,
+  },
   computed: {
-    showCategoriesMenu: function() {
+    showCategoriesMenu: function () {
       return !this.$store.getters.isASmallDevice;
     },
-    categories: function() {
+    categories: function () {
       return this.$store.getters.categories;
-    }
+    },
   },
-  components: {
-    gwsCategories: Categories
-  }
 };
 </script>

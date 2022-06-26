@@ -2,14 +2,25 @@
   <div>
     <gws-products-cards :products="products" />
 
-    <gws-pagination v-if="pagination.total_pages > 1" :pagination="pagination" @onLinkClicked="changePage($event)"></gws-pagination>
+    <gws-pagination
+      v-if="pagination.total_pages > 1"
+      :pagination="pagination"
+      @onLinkClicked="changePage($event)"
+    >
+    </gws-pagination>
 
     <gws-modal v-if="modal.error">
-      <div class="local-modal-header" slot="header"> My Food</div>
-      <div class="local-modal-body" slot="body">{{ modal.message }}</div>
-      <div class="local-modal-footer" slot="footer">
-        <button class="btn btn-secondary" @click="onModalClose">OK</button>
-      </div>
+      <template v-slot:header>
+        <div class="local-modal-header">My Food</div>
+      </template>
+      <template v-slot:body>
+        <div class="local-modal-body">{{ modal.message }}</div>
+      </template>
+      <template v-slot:footer>
+        <div class="local-modal-footer">
+          <button class="btn btn-secondary" @click="onModalClose">OK</button>
+        </div>
+      </template>
     </gws-modal>
   </div>
 </template>
@@ -21,8 +32,11 @@ import Modal from '../Modal.vue';
 import Pagination from '../Pagination.vue';
 
 export default {
-  created() {
-    this.getProducts();
+  name: 'AppStart',
+  components: {
+    gwsProductsCards: ProductsCards,
+    gwsModal: Modal,
+    gwsPagination: Pagination,
   },
   data() {
     return {
@@ -31,8 +45,8 @@ export default {
       current_page: 1,
       modal: {
         error: false,
-        message: ''
-      }
+        message: '',
+      },
     };
   },
   computed: {
@@ -40,8 +54,8 @@ export default {
       const params = {
         params: {
           include: 'category',
-          page: this.current_page
-        }
+          page: this.current_page,
+        },
       };
 
       if (this.$route.query.category) {
@@ -49,13 +63,16 @@ export default {
       }
 
       return params;
-    }
+    },
   },
   watch: {
-    '$route.query.category': function() {
+    '$route.query.category': function () {
       this.current_page = 1;
       this.getProducts();
-    }
+    },
+  },
+  created() {
+    this.getProducts();
   },
   methods: {
     getProducts() {
@@ -63,12 +80,12 @@ export default {
 
       axios
         .get('/products', this.urlParams)
-        .then(response => {
+        .then((response) => {
           this.products = response.data.data;
           this.pagination = response.data.meta.pagination;
           this.onStopLoading();
         })
-        .catch(error => {
+        .catch((error) => {
           this.onHttpRequestError(error);
         });
     },
@@ -91,13 +108,8 @@ export default {
     changePage(page) {
       this.current_page = page;
       this.getProducts();
-    }
+    },
   },
-  components: {
-    gwsProductsCards: ProductsCards,
-    gwsModal: Modal,
-    gwsPagination: Pagination
-  }
 };
 </script>
 

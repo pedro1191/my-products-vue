@@ -1,21 +1,27 @@
 <template>
-  <router-link :to="{ name: 'products', query: { category: category.id } }" :class="customClasses" active-class="active" exact>
+  <router-link
+    :to="{ name: 'products', query: { category: category.id } }"
+    :class="customClasses"
+    active-class="active"
+    exact
+  >
     {{ category.name }}
   </router-link>
 </template>
 
 <script>
 export default {
+  name: 'AppCategory',
   props: {
     category: {
       type: Object,
       required: true,
-      validator: function(category) {
+      validator: function (category) {
         return category.id && Number.isInteger(category.id) && category.name;
-      }
+      },
     },
-    customClasses: String
-  }
+    customClasses: String,
+  },
 };
 </script>
 

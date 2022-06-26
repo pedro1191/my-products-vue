@@ -2,11 +2,21 @@
   <div class="categories">
     <div class="title my-4" @click="onCategoriesTitleClick">
       <h2>{{ title }}</h2>
-      <i class="ml-3 fas" :class="{ 'fa-plus': !showCategories, 'fa-minus': showCategories }"></i>
+      <i
+        class="ml-3 fas"
+        :class="{ 'fa-plus': !showCategories, 'fa-minus': showCategories }"
+      >
+      </i>
     </div>
     <div v-if="showCategories">
       <ul class="list-group" v-if="categories.length > 0">
-        <gws-category v-for="(category, index) in categories" :key="index" :category="category" customClasses="list-group-item"></gws-category>
+        <gws-category
+          v-for="(category, index) in categories"
+          :key="index"
+          :category="category"
+          customClasses="list-group-item"
+        >
+        </gws-category>
       </ul>
       <h4 class="text-center text-muted" v-else>No categories found =/</h4>
     </div>
@@ -17,29 +27,30 @@
 import Category from './Category.vue';
 
 export default {
+  name: 'AppCategories',
+  components: {
+    gwsCategory: Category,
+  },
   props: {
     title: {
       type: String,
-      default: 'Categories'
+      default: 'Categories',
     },
     categories: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      showCategories: true
+      showCategories: true,
     };
-  },
-  components: {
-    gwsCategory: Category
   },
   methods: {
     onCategoriesTitleClick() {
       this.showCategories = !this.showCategories;
-    }
-  }
+    },
+  },
 };
 </script>
 

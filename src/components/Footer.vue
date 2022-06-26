@@ -15,13 +15,14 @@
 import SocialMedia from './SocialMedia.vue';
 
 export default {
+  name: 'AppFooter',
+  components: {
+    gwsSocialMedia: SocialMedia,
+  },
   computed: {
     thisYear() {
       return new Date().getFullYear();
-    }
+    },
   },
-  components: {
-    gwsSocialMedia: SocialMedia
-  }
 };
 </script>
