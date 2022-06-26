@@ -2,11 +2,8 @@
   <div class="categories">
     <div class="title my-4" @click="onCategoriesTitleClick">
       <h2>{{ title }}</h2>
-      <i
-        class="ml-3 fas"
-        :class="{ 'fa-plus': !showCategories, 'fa-minus': showCategories }"
-      >
-      </i>
+      <font-awesome-icon class="ml-3" icon="fa-minus" v-if="showCategories" />
+      <font-awesome-icon class="ml-3" icon="fa-plus" v-else />
     </div>
     <div v-if="showCategories">
       <ul class="list-group" v-if="categories.length > 0">

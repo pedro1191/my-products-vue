@@ -6,7 +6,7 @@
       target="_blank"
       rel="noreferrer noopener"
     >
-      <i class="fab fa-facebook-f"></i>
+      <font-awesome-icon icon="fa-brands fa-facebook-f" />
     </a>
     <a
       href="https://www.instagram.com"
@@ -14,7 +14,7 @@
       target="_blank"
       rel="noreferrer noopener"
     >
-      <i class="fab fa-instagram"></i>
+      <font-awesome-icon icon="fa-brands fa-instagram" />
     </a>
     <a
       href="https://www.twitter.com"
@@ -22,7 +22,7 @@
       target="_blank"
       rel="noreferrer noopener"
     >
-      <i class="fab fa-twitter"></i>
+      <font-awesome-icon icon="fa-brands fa-twitter" />
     </a>
   </div>
 </template>
