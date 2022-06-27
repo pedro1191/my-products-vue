@@ -1,6 +1,6 @@
 {
-  "name": "My Food",
-  "short_name": "My Food",
+  "name": "FoodClub",
+  "short_name": "FoodClub",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",

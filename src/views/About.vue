@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col text-center">
-        <h1 class="my-4">My Food</h1>
+        <h1 class="my-4">FoodClub</h1>
         <p>This app was developed using Vue JS.</p>
         <p>
           It comunicates with a back end RESTful API developed in PHP using

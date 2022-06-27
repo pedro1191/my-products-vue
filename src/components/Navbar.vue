@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top">
     <div class="container">
       <router-link class="navbar-brand" to="/">
-        <gws-logo :customStyle="customLogoStyle" /> My Food
+        <gws-logo :customStyle="customLogoStyle" /> FoodClub
       </router-link>
       <button
         class="navbar-toggler"

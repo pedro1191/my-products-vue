@@ -12,7 +12,7 @@
 
     <gws-modal v-if="modal.error">
       <template v-slot:header>
-        <div class="local-modal-header">My Food</div>
+        <div class="local-modal-header">FoodClub</div>
       </template>
       <template v-slot:body>
         <div class="local-modal-body">{{ modal.message }}</div>
