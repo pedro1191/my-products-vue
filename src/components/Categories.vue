@@ -61,11 +61,11 @@ export default {
   align-items: center;
   align-content: center;
   cursor: pointer;
-  color: #dc3545;
+  color: var(--primary);
 }
 
 .title i {
   font-size: 1.5rem;
-  color: #dc3545;
+  color: var(--primary);
 }
 </style>

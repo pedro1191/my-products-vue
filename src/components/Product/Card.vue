@@ -48,6 +48,6 @@ export default {
 
 <style scoped>
 a {
-  color: #dc3545;
+  color: var(--primary);
 }
 </style>

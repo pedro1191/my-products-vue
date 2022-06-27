@@ -319,7 +319,7 @@ export default {
 
 .local-modal-header {
   text-align: left;
-  color: #dc3545;
+  color: var(--primary);
   font-weight: bold;
 }
 

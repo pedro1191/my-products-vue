@@ -28,7 +28,7 @@ export default {
 <style scoped>
 .list-group-item:hover,
 .list-group-item:focus {
-  color: #dc3545;
+  color: var(--primary);
   text-decoration: none;
 }
 </style>
