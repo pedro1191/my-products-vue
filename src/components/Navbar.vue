@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
     <div class="container">
       <router-link class="navbar-brand" to="/">
         <gws-logo :customStyle="customLogoStyle" /> FoodClub
@@ -22,7 +22,7 @@
         id="navbarSupportedContent"
         :class="{ show: mobileNavbarOpen }"
       >
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav m-auto">
           <router-link class="nav-item" to="/" active-class="active" exact>
             <li><a class="nav-link">Home</a></li>
           </router-link>
@@ -31,18 +31,17 @@
           </router-link>
           <li
             class="nav-item dropdown"
-            @click="onDropdownClick"
-            :class="{ show: dropdownOpen }"
+            :class="{ show: dropdownOpen, active: isCategoriesPage }"
             v-if="showCategoriesMenu"
           >
             <a
               class="nav-link dropdown-toggle"
-              href="#"
               id="navbarDropdown"
               role="button"
               data-toggle="dropdown"
               aria-haspopup="true"
               :aria-expanded="dropdownOpen"
+              @click="onDropdownClick"
             >
               Categories
             </a>
@@ -63,16 +62,14 @@
           <router-link class="nav-item" to="/contact" active-class="active">
             <li><a class="nav-link">Contact</a></li>
           </router-link>
-          <li class="nav-item">
-            <a
-              :href="dashboardUrl"
-              target="_blank"
-              class="nav-link"
-              rel="noreferrer noopener"
-            >
-              Dashboard
-            </a>
-          </li>
+          <a
+            class="nav-item"
+            :href="dashboardUrl"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            <li><a class="nav-link">Dashboard</a></li>
+          </a>
         </ul>
       </div>
     </div>
@@ -106,10 +103,14 @@ export default {
     categories: function () {
       return this.$store.getters.categories;
     },
+    isCategoriesPage: function () {
+      return this.$route.name === 'products';
+    },
   },
   watch: {
     $route() {
       this.mobileNavbarOpen = false;
+      this.dropdownOpen = false;
     },
   },
   methods: {
@@ -124,7 +125,35 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+  font-family: 'PatrickHand';
+  src: url('../assets/fonts/PatrickHand-Regular.ttf');
+}
+
+.navbar {
+  font-family: PatrickHand, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--dark);
+  font-size: 1.25rem;
+}
+
 .nav-item {
+  color: var(--primary);
   text-align: center;
+  border-radius: 40px;
+  border: 2px solid transparent;
+  padding: 0 1em;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.nav-item.active {
+  color: var(--dark);
+  border: 2px solid var(--primary);
+}
+
+.nav-item.active a {
+  color: var(--dark);
 }
 </style>

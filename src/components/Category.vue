@@ -5,7 +5,9 @@
     active-class="active"
     exact
   >
-    {{ category.name }}
+    <li>
+      <a class="nav-link">{{ category.name }}</a>
+    </li>
   </router-link>
 </template>
 
