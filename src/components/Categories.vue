@@ -70,7 +70,7 @@ header {
 }
 
 header img {
-  max-width: 110px;
+  max-width: 100px;
 }
 
 .categories {
