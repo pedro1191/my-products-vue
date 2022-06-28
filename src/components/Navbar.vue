@@ -152,4 +152,8 @@ export default {
   color: var(--dark);
   border: 2px solid var(--primary);
 }
+
+.nav-item.active .nav-link {
+  color: var(--dark);
+}
 </style>
