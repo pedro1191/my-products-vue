@@ -4,7 +4,6 @@
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-content" :style="customContentStyle">
-
             <div class="modal-header">
               <slot name="header"></slot>
             </div>
@@ -16,7 +15,6 @@
             <div class="modal-footer">
               <slot name="footer"></slot>
             </div>
-
           </div>
         </div>
       </div>
@@ -26,9 +24,10 @@
 
 <script>
 export default {
+  name: 'AppModal',
   props: {
-    customContentStyle: Object
-  }
+    customContentStyle: Object,
+  },
 };
 </script>
 

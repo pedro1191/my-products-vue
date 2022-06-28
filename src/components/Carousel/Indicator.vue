@@ -4,10 +4,11 @@
 
 <script>
 export default {
+  name: 'AppIndicator',
   props: {
     index: {
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 };
 </script>

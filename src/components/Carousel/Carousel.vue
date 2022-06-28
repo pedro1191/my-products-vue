@@ -1,7 +1,12 @@
 <template>
   <div id="carouselIndicators" class="carousel slide my-4" data-ride="carousel">
-    <gws-carousel-indicators :numberOfIndicators="carouselItems.length" :activeIndex="activeIndex"></gws-carousel-indicators>
-    <gws-carousel-items :items="carouselItems" :activeIndex="activeIndex"></gws-carousel-items>
+    <gws-carousel-indicators
+      :numberOfIndicators="carouselItems.length"
+      :activeIndex="activeIndex"
+    >
+    </gws-carousel-indicators>
+    <gws-carousel-items :items="carouselItems" :activeIndex="activeIndex">
+    </gws-carousel-items>
     <gws-carousel-prev-control @previousClicked="onPreviousClick" />
     <gws-carousel-next-control @nextClicked="onNextClick" />
   </div>
@@ -17,19 +22,26 @@ import gwsBanner2 from '@/assets/banner2.jpeg';
 import gwsBanner3 from '@/assets/banner3.jpeg';
 
 export default {
-  created() {
-    this.setCarouselInterval();
+  name: 'AppCarousel',
+  components: {
+    gwsCarouselIndicators: CarouselIndicators,
+    gwsCarouselItems: CarouselItems,
+    gwsCarouselPrevControl: CarouselPrevControl,
+    gwsCarouselNextControl: CarouselNextControl,
   },
   data() {
     return {
       carouselItems: [
         { image: gwsBanner1 },
         { image: gwsBanner2 },
-        { image: gwsBanner3 }
+        { image: gwsBanner3 },
       ],
       activeIndex: 0,
-      carouselInterval: 0
+      carouselInterval: 0,
     };
+  },
+  created() {
+    this.setCarouselInterval();
   },
   methods: {
     setCarouselInterval() {
@@ -57,13 +69,7 @@ export default {
       } else {
         this.activeIndex++;
       }
-    }
+    },
   },
-  components: {
-    gwsCarouselIndicators: CarouselIndicators,
-    gwsCarouselItems: CarouselItems,
-    gwsCarouselPrevControl: CarouselPrevControl,
-    gwsCarouselNextControl: CarouselNextControl
-  }
 };
 </script>
