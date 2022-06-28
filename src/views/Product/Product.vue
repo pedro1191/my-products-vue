@@ -1,10 +1,10 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-lg-3" v-if="showCategoriesMenu">
+      <div class="col-md-4" v-if="showCategoriesMenu">
         <gws-categories :categories="categories"></gws-categories>
       </div>
-      <div class="col-lg-9">
+      <div class="col-md-8">
         <router-view />
       </div>
     </div>
