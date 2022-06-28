@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+  <nav class="navbar navbar-expand-md navbar-light bg-white fixed-top">
     <div class="container">
       <router-link class="navbar-brand" to="/">
         <gws-logo :customStyle="customLogoStyle" /> FoodClub

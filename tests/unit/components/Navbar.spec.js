@@ -1,13 +1,10 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
 import { faker } from '@faker-js/faker';
 import { mount } from '@vue/test-utils';
 import { RouterLinkStub } from '@vue/test-utils';
 import Navbar from '@/components/Navbar.vue';
 
-const createVuexStore = (
-  screenWidth = 992,
-  categories = [],
-) => {
+const createVuexStore = (screenWidth = 768, categories = []) => {
   return createStore({
     state() {
       return {
@@ -17,7 +14,7 @@ const createVuexStore = (
     },
     getters: {
       isASmallDevice(state) {
-        return state.screenWidth < 992;
+        return state.screenWidth < 768;
       },
       categories(state) {
         return state.categories;
@@ -30,13 +27,7 @@ describe('Navbar.vue', () => {
   it('renders the nav links for big devices', () => {
     // ARRANGE
     const store = createVuexStore();
-    const expectedLinks = [
-      'FoodClub',
-      'Home',
-      'About',
-      'Contact',
-      'Dashboard',
-    ];
+    const expectedLinks = ['FoodClub', 'Home', 'About', 'Contact', 'Dashboard'];
     const wrapper = mount(Navbar, {
       global: {
         mocks: {
@@ -77,8 +68,8 @@ describe('Navbar.vue', () => {
       },
     ];
     const store = createVuexStore(
-      faker.datatype.number({ max: 991 }),
-      expectedCategories,
+      faker.datatype.number({ max: 767 }),
+      expectedCategories
     );
     const expectedLinks = [
       'FoodClub',
