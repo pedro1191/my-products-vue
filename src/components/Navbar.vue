@@ -125,11 +125,6 @@ export default {
 </script>
 
 <style scoped>
-@font-face {
-  font-family: 'PatrickHand';
-  src: url('../assets/fonts/PatrickHand-Regular.ttf');
-}
-
 .navbar {
   font-family: PatrickHand, sans-serif;
   -webkit-font-smoothing: antialiased;
