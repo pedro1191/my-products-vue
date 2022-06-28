@@ -54,6 +54,10 @@ export default {
 </script>
 
 <style>
+:root {
+  --navbar-offset: 76px;
+}
+
 @font-face {
   font-family: 'Roboto';
   src: url('./assets/fonts/Roboto-Regular.ttf');
@@ -67,6 +71,6 @@ export default {
 }
 
 main > .container {
-  padding-top: 76px;
+  padding-top: var(--navbar-offset);
 }
 </style>
