@@ -3,27 +3,29 @@
     <header>
       <img alt="Dinnerware" :src="gwsDinnerware" />
     </header>
-    <div class="title my-4" @click="onCategoriesTitleClick">
-      <h4 class="font-weight-bold">{{ title }}</h4>
-      <font-awesome-icon
-        class="ml-3"
-        size="2x"
-        icon="fa-minus"
-        v-if="showCategories"
-      />
-      <font-awesome-icon class="ml-3" size="2x" icon="fa-plus" v-else />
-    </div>
-    <div v-if="showCategories">
-      <ul class="list-group" v-if="categories.length > 0">
-        <gws-category
-          v-for="(category, index) in categories"
-          :key="index"
-          :category="category"
-          customClasses="list-group-item"
-        >
-        </gws-category>
-      </ul>
-      <h4 class="text-center text-muted" v-else>No categories found =/</h4>
+    <div class="pl-3">
+      <div class="title my-4" @click="onCategoriesTitleClick">
+        <h5 class="font-weight-bold">{{ title }}</h5>
+        <font-awesome-icon
+          class="ml-3"
+          size="2x"
+          icon="fa-minus"
+          v-if="showCategories"
+        />
+        <font-awesome-icon class="ml-3" size="2x" icon="fa-plus" v-else />
+      </div>
+      <div v-if="showCategories">
+        <ul class="list-group" v-if="categories.length > 0">
+          <gws-category
+            v-for="(category, index) in categories"
+            :key="index"
+            :category="category"
+            customClasses="list-group-item"
+          >
+          </gws-category>
+        </ul>
+        <h4 class="text-center text-muted" v-else>No categories found =/</h4>
+      </div>
     </div>
   </div>
 </template>
@@ -85,7 +87,7 @@ header img {
   color: var(--primary);
 }
 
-.title h4 {
+.title * {
   margin: 0;
 }
 </style>
