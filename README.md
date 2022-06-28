@@ -2,7 +2,7 @@
 
 Hello and welcome!
 
-This is a Progressive Web Application built using [Vue.js](https://vuejs.org/) that shows things divided by categories. The "theme" chosen here relates to culinary, but it could have been anything else. It consumes a [REST API](https://github.com/pedro1191/my-products-rest) to load the categories and things and links a [Dashboard](https://github.com/pedro1191/my-products-dashboard-vue) with authentication where the administrator can manage them.
+This is a Progressive Web Application built using [Vue.js](https://vuejs.org/) that shows things divided by categories. It links a [Dashboard](https://github.com/pedro1191/my-products-dashboard-vue) with authentication where the administrator can manage them and consumes a [REST API](https://github.com/pedro1191/my-products-rest) to load the categories and send contact messages. The "theme" chosen here relates to culinary, but it could have been anything else.
 
 The following technologies are being used:
 - [axios](https://github.com/axios/axios): to consume the [REST API](https://github.com/pedro1191/my-products-rest)
