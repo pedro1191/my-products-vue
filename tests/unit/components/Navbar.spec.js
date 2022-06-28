@@ -76,7 +76,7 @@ describe('Navbar.vue', () => {
       'FoodClub',
       'Home',
       'About',
-      'Categories',
+      'Renowned Chefs',
       'Contact',
       'Dashboard',
     ];

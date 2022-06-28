@@ -43,7 +43,7 @@
               :aria-expanded="dropdownOpen"
               @click="onDropdownClick"
             >
-              Categories
+              Renowned Chefs
             </a>
             <div
               class="dropdown-menu"
