@@ -1,4 +1,5 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
+import { faker } from '@faker-js/faker';
 import { mount } from '@vue/test-utils';
 import App from '@/App.vue';
 
@@ -33,6 +34,11 @@ describe('App.vue', () => {
     const store = createVuexStore();
     mount(App, {
       global: {
+        mocks: {
+          $route: {
+            name: faker.lorem.word(),
+          },
+        },
         plugins: [store],
         stubs: ['FontAwesomeIcon', 'RouterLink', 'RouterView'],
       },
