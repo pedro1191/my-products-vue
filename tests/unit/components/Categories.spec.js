@@ -36,10 +36,10 @@ describe('Categories.vue', () => {
     });
 
     // ACT
-    const titleWrapperText = wrapper.text();
+    const wrapperText = wrapper.text();
 
     // ASSERT
-    expect(titleWrapperText).toContain('No categories found =/');
+    expect(wrapperText).toContain('No categories found =/');
   });
 
   it('renders the props.categories when passed', () => {
