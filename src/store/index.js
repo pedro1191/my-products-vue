@@ -2,15 +2,23 @@ import { createStore } from 'vuex';
 import axios from '../axios-default';
 
 export default createStore({
-  state: {
-    thingsLoading: 0,
-    categories: [],
-    screenWidth:
-      window.innerWidth || window.document.documentElement.clientWidth,
+  state() {
+    return {
+      thingsLoading: 0,
+      categories: [],
+      screenWidth:
+        window.innerWidth || window.document.documentElement.clientWidth,
+    };
   },
   getters: {
+    isALargeDevice(state) {
+      return state.screenWidth >= 992;
+    },
+    isAMediumDevice(state) {
+      return state.screenWidth >= 768 && state.screenWidth < 992;
+    },
     isASmallDevice(state) {
-      return state.screenWidth < 992;
+      return state.screenWidth < 768;
     },
     isLoading(state) {
       return state.thingsLoading > 0;
