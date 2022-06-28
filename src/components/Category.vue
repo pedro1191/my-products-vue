@@ -1,12 +1,10 @@
 <template>
   <router-link
     :to="{ name: 'products', query: { category: category.id } }"
-    :class="customClasses"
-    active-class="active"
-    exact
+    :class="linkClasses"
   >
     <li>
-      <a class="nav-link">{{ category.name }}</a>
+      <a>{{ category.name }}</a>
     </li>
   </router-link>
 </template>
@@ -23,6 +21,18 @@ export default {
       },
     },
     customClasses: String,
+  },
+  computed: {
+    activeClass: function () {
+      if (this.$route.query.category === String(this.category.id)) {
+        return 'active';
+      }
+
+      return '';
+    },
+    linkClasses: function () {
+      return `${this.customClasses} ${this.activeClass}`;
+    },
   },
 };
 </script>
