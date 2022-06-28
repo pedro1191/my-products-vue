@@ -32,6 +32,7 @@ describe('Navbar.vue', () => {
       global: {
         mocks: {
           $route: {
+            query: {},
             name: faker.lorem.word(),
           },
         },
@@ -83,6 +84,7 @@ describe('Navbar.vue', () => {
       global: {
         mocks: {
           $route: {
+            query: {},
             name: faker.lorem.word(),
           },
         },
