@@ -63,6 +63,11 @@ export default {
   src: url('./assets/fonts/Roboto-Regular.ttf');
 }
 
+@font-face {
+  font-family: 'PatrickHand';
+  src: url('./assets/fonts/PatrickHand-Regular.ttf');
+}
+
 #app {
   font-family: Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
