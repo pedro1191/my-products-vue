@@ -1,14 +1,16 @@
 <template>
   <div class="container">
-    <div class="row">
-      <div class="col-lg-3" v-if="showCategoriesMenu">
+    <header class="pt-4">
+      <gws-banner />
+    </header>
+    <section class="row pt-4">
+      <div class="col-md-4" v-if="showCategoriesMenu">
         <gws-categories :categories="categories"></gws-categories>
       </div>
-      <div class="col-lg-9">
-        <gws-slider></gws-slider>
+      <div class="col-md-8">
         <gws-products-cards :products="products"></gws-products-cards>
       </div>
-    </div>
+    </section>
 
     <gws-modal v-if="modal.error">
       <template v-slot:header>
@@ -28,8 +30,8 @@
 
 <script>
 import axios from '@/axios-default';
+import Banner from '../components/Banner.vue';
 import Categories from '../components/Categories.vue';
-import Slider from '../components/Carousel/Carousel.vue';
 import ProductsCards from '../components/Product/Cards.vue';
 import Modal from '../components/Modal.vue';
 
@@ -37,7 +39,7 @@ export default {
   name: 'AppHome',
   components: {
     gwsCategories: Categories,
-    gwsSlider: Slider,
+    gwsBanner: Banner,
     gwsProductsCards: ProductsCards,
     gwsModal: Modal,
   },
