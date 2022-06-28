@@ -1,9 +1,17 @@
 <template>
   <div class="categories">
+    <header>
+      <img alt="Dinnerware" :src="gwsDinnerware" />
+    </header>
     <div class="title my-4" @click="onCategoriesTitleClick">
-      <h2>{{ title }}</h2>
-      <font-awesome-icon class="ml-3" icon="fa-minus" v-if="showCategories" />
-      <font-awesome-icon class="ml-3" icon="fa-plus" v-else />
+      <h4 class="font-weight-bold">{{ title }}</h4>
+      <font-awesome-icon
+        class="ml-3"
+        size="2x"
+        icon="fa-minus"
+        v-if="showCategories"
+      />
+      <font-awesome-icon class="ml-3" size="2x" icon="fa-plus" v-else />
     </div>
     <div v-if="showCategories">
       <ul class="list-group" v-if="categories.length > 0">
@@ -22,6 +30,7 @@
 
 <script>
 import Category from './Category.vue';
+import gwsDinnerware from '@/assets/dinnerware.png';
 
 export default {
   name: 'AppCategories',
@@ -31,7 +40,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'Categories',
+      default: 'RENOWNED CHEFS',
     },
     categories: {
       type: Array,
@@ -40,6 +49,7 @@ export default {
   },
   data() {
     return {
+      gwsDinnerware,
       showCategories: true,
     };
   },
@@ -52,8 +62,19 @@ export default {
 </script>
 
 <style scoped>
+header {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--dark);
+}
+
+header img {
+  max-width: 110px;
+}
+
 .categories {
-  position: fixed;
+  position: -webkit-sticky;
+  position: sticky;
+  top: var(--navbar-offset);
 }
 
 .title {
@@ -64,8 +85,7 @@ export default {
   color: var(--primary);
 }
 
-.title i {
-  font-size: 1.5rem;
-  color: var(--primary);
+.title h4 {
+  margin: 0;
 }
 </style>
