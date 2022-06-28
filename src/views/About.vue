@@ -1,14 +1,24 @@
 <template>
   <div class="container">
-    <div class="row">
+    <div class="row pt-5">
       <div class="col text-center">
         <h1 class="my-4">FoodClub</h1>
-        <p>This app was developed using Vue JS.</p>
         <p>
-          It comunicates with a back end RESTful API developed in PHP using
-          Laravel/Lumen.
+          This is a Progressive Web Application built using Vue.js that shows
+          things divided by categories. It links a Dashboard with authentication
+          where the administrator can manage them and consumes a
+          <a
+            class="text-danger"
+            href="https://github.com/pedro1191/my-products-rest.git"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            REST API
+          </a>
+          to load the categories and send contact messages. The "theme" chosen
+          here relates to culinary, but it could have been anything else.
         </p>
-        <p><strong>Version:</strong> 1.0.0</p>
+        <p><strong>Version:</strong> 2.0.0</p>
         <p>
           <a
             class="text-danger"
@@ -16,17 +26,7 @@
             target="_blank"
             rel="noreferrer noopener"
           >
-            See source code of this Vue JS App
-          </a>
-        </p>
-        <p>
-          <a
-            class="text-danger"
-            href="https://github.com/pedro1191/my-products-rest.git"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            See source code of the Laravel/Lumen RESTful API
+            See source code <font-awesome-icon icon="fa-code" />
           </a>
         </p>
       </div>
@@ -39,3 +39,12 @@ export default {
   name: 'AppAbout',
 };
 </script>
+
+<style scoped>
+h1 {
+  font-family: PatrickHand, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--dark);
+}
+</style>
