@@ -16,6 +16,11 @@ module.exports = (on, config) => {
   // }))
 
   return Object.assign({}, config, {
+    env: {
+      VUE_APP_DASHBOARD_APP_URL: process.env.VUE_APP_DASHBOARD_APP_URL,
+      VUE_APP_DEFAULT_BACKEND_API_URL:
+        process.env.VUE_APP_DEFAULT_BACKEND_API_URL,
+    },
     fixturesFolder: 'tests/e2e/fixtures',
     integrationFolder: 'tests/e2e/specs',
     screenshotsFolder: 'tests/e2e/screenshots',
