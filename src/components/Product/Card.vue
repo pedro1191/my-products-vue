@@ -1,7 +1,7 @@
 <template>
   <div class="card h-100">
     <div class="card-header">
-      <h6 class="card-title mb-0">
+      <h6 class="card-title mb-0 text-capitalize">
         <router-link
           :to="{ name: 'productsSingle', params: { id: product.id } }"
         >

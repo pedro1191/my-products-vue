@@ -1,38 +1,41 @@
 <template>
   <div class="row">
-    <div class="col my-4">
-      <div class="card mx-auto" v-if="product">
-        <img
-          class="card-img-top img-fluid"
-          :src="product.image"
-          :alt="product.name"
-        />
+    <div class="col" v-if="product">
+      <div class="card p-3 mx-auto" v-if="product">
         <div class="card-body">
-          <h3 class="card-title">{{ product.name }}</h3>
-          <h5>{{ product.category.data.name }}</h5>
+          <h4 class="font-weight-bold text-capitalize">{{ product.name }}</h4>
+          <h6 class="mb-0">{{ product.category.data.name }}</h6>
+          <img
+            class="card-img-top img-fluid my-4"
+            :src="product.image"
+            :alt="product.name"
+          />
           <p class="card-text">{{ product.description }}</p>
         </div>
       </div>
-
-      <div class="text-center text-muted" v-else>
-        <h1>The specified product was not found =/</h1>
-      </div>
     </div>
-
-    <gws-modal v-if="modal.error">
-      <template v-slot:header>
-        <div class="local-modal-header">FoodClub</div>
-      </template>
-      <template v-slot:body>
-        <div class="local-modal-body">{{ modal.message }}</div>
-      </template>
-      <template v-slot:footer>
-        <div class="local-modal-footer">
-          <button class="btn btn-secondary" @click="onModalClose">OK</button>
-        </div>
-      </template>
-    </gws-modal>
+    <div class="col text-center text-muted" v-else>
+      The specified resource has not been found =/
+    </div>
   </div>
+
+  <button class="btn btn-link" @click="$router.back()">
+    <font-awesome-icon icon="fa-backward" /> Go Back
+  </button>
+
+  <gws-modal v-if="modal.error">
+    <template v-slot:header>
+      <div class="local-modal-header">FoodClub</div>
+    </template>
+    <template v-slot:body>
+      <div class="local-modal-body">{{ modal.message }}</div>
+    </template>
+    <template v-slot:footer>
+      <div class="local-modal-footer">
+        <button class="btn btn-secondary" @click="onModalClose">OK</button>
+      </div>
+    </template>
+  </gws-modal>
 </template>
 
 <script>
@@ -114,7 +117,8 @@ export default {
   text-align: right;
 }
 
-.card {
-  max-width: 700px;
+img {
+  max-width: 300px;
+  margin: auto;
 }
 </style>

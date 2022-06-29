@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import {
   faBars,
+  faBackward,
   faCode,
   faMinus,
   faPlus,
@@ -21,6 +22,7 @@ import VueGtag from 'vue-gtag';
 
 library.add(
   faBars,
+  faBackward,
   faCode,
   faFacebookF,
   faInstagram,
