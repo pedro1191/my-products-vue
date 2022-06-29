@@ -15,6 +15,8 @@
             <div class="modal-footer">
               <slot name="footer"></slot>
             </div>
+
+            <slot></slot>
           </div>
         </div>
       </div>
@@ -69,6 +71,7 @@ export default {
 }
 
 .modal-header:empty,
+.modal-body:empty,
 .modal-footer:empty {
   display: none;
 }

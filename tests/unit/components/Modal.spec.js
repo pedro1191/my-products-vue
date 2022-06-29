@@ -26,9 +26,11 @@ describe('Modal.vue', () => {
     // ARRANGE
     const headerContent = faker.lorem.words();
     const bodyContent = faker.lorem.words();
+    const defaultContent = faker.lorem.words();
     const footerContent = faker.lorem.words();
     const wrapper = mount(Modal, {
       slots: {
+        default: defaultContent,
         header: headerContent,
         body: bodyContent,
         footer: footerContent,
@@ -39,6 +41,7 @@ describe('Modal.vue', () => {
     const wrapperText = wrapper.text();
 
     // ASSERT
+    expect(wrapperText).toContain(defaultContent);
     expect(wrapperText).toContain(headerContent);
     expect(wrapperText).toContain(bodyContent);
     expect(wrapperText).toContain(footerContent);
