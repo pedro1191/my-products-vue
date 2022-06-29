@@ -73,6 +73,24 @@ export default {
   display: none;
 }
 
+.modal-header,
+.modal-body,
+.modal-footer {
+  padding: 0.5rem;
+  background-color: #fff;
+  width: 100%;
+}
+
+.modal-header {
+  text-align: left;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.modal-footer {
+  text-align: right;
+}
+
 /*
  * Modal transition
  */
