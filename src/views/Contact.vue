@@ -183,11 +183,11 @@ export default {
   methods: {
     onSubmit() {
       this.$store.dispatch('setLoading', true);
-      const data = new FormData();
+      const data = {};
 
       for (let key in this.form) {
         if (this.form[key]) {
-          data.append(key, this.form[key]);
+          data[key] = this.form[key];
         }
       }
 
@@ -196,7 +196,7 @@ export default {
         .then(() => {
           this.onStopLoading();
           this.modal.success = true;
-          this.modal.message = 'Message sent successfully';
+          this.modal.message = 'The message has been sent successfully!';
           this.resetForm();
         })
         .catch((error) => {

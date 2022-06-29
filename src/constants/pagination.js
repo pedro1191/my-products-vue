@@ -1,0 +1,1 @@
+export const DEFAULT_NUMBERED_PAGE_BUTTONS = 3;
