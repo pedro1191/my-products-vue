@@ -35,7 +35,7 @@ describe('Contact.vue', () => {
 
     // ACT
     const headerTitle = wrapper.get('h1');
-    const contactForm = wrapper.get('form');
+    const contactForm = wrapper.find('form');
 
     // ASSERT
     expect(headerTitle.text()).toBe('Contact Us');
