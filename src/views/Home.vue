@@ -13,16 +13,12 @@
     </section>
 
     <gws-modal v-if="modal.error">
-      <template v-slot:header>
-        <div class="local-modal-header">FoodClub</div>
-      </template>
+      <template v-slot:header>FoodClub</template>
       <template v-slot:body>
-        <div class="local-modal-body">{{ modal.message }}</div>
+        {{ modal.message }}
       </template>
       <template v-slot:footer>
-        <div class="local-modal-footer">
-          <button class="btn btn-secondary" @click="onModalClose">OK</button>
-        </div>
+        <button class="btn btn-primary py-1" @click="onModalClose">OK</button>
       </template>
     </gws-modal>
   </div>
@@ -102,23 +98,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.local-modal-header,
-.local-modal-body,
-.local-modal-footer {
-  padding: 0.5rem;
-  background-color: #fff;
-  width: 100%;
-}
-
-.local-modal-header {
-  text-align: left;
-  color: var(--primary);
-  font-weight: bold;
-}
-
-.local-modal-footer {
-  text-align: right;
-}
-</style>

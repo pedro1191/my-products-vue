@@ -9,7 +9,7 @@
     <gws-footer></gws-footer>
 
     <gws-modal v-if="isLoading">
-      <template v-slot:body>
+      <template v-slot:default>
         <gws-spinner></gws-spinner>
       </template>
     </gws-modal>

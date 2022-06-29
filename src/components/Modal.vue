@@ -15,6 +15,8 @@
             <div class="modal-footer">
               <slot name="footer"></slot>
             </div>
+
+            <slot></slot>
           </div>
         </div>
       </div>
@@ -69,8 +71,27 @@ export default {
 }
 
 .modal-header:empty,
+.modal-body:empty,
 .modal-footer:empty {
   display: none;
+}
+
+.modal-header,
+.modal-body,
+.modal-footer {
+  padding: 0.5rem;
+  background-color: #fff;
+  width: 100%;
+}
+
+.modal-header {
+  text-align: left;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.modal-footer {
+  text-align: right;
 }
 
 /*
