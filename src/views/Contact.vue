@@ -3,15 +3,15 @@
     <gws-map />
 
     <div class="row">
-      <div class="col-md-8 my-4 mx-auto">
+      <div class="col-md-8 pb-5 mx-auto">
         <div>
           <div>
-            <h1 class="text-center text-danger">Contact Us</h1>
+            <h1 class="text-center">Contact Us</h1>
           </div>
           <div>
             <form>
               <div class="form-group">
-                <label for="name">Name*</label>
+                <label for="name">Name *</label>
                 <input
                   type="text"
                   class="form-control"
@@ -30,7 +30,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="email">Email*</label>
+                <label for="email">Email *</label>
                 <input
                   type="email"
                   class="form-control"
@@ -49,30 +49,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="phone">Phone</label>
-                <input
-                  type="phone"
-                  class="form-control"
-                  id="phone"
-                  aria-describedby="phoneHelp"
-                  v-model.trim="v$.form.phone.$model"
-                  :class="{
-                    'is-invalid':
-                      v$.form.phone.$error || formValidationMessages.phone,
-                  }"
-                />
-                <div
-                  class="invalid-feedback"
-                  v-if="formValidationMessages.phone"
-                >
-                  {{ formValidationMessages.phone }}
-                </div>
-                <small id="phoneHelp" class="text-muted">
-                  It must be a brazilian valid phone number.
-                </small>
-              </div>
-              <div class="form-group">
-                <label for="message">Message*</label>
+                <label for="message">Message *</label>
                 <textarea
                   class="form-control"
                   id="message"
@@ -92,11 +69,11 @@
               </div>
               <button
                 type="submit"
-                class="btn btn-outline-secondary"
+                class="btn btn-primary"
                 :disabled="v$.$invalid"
                 @click.prevent="onSubmit"
               >
-                Send Message
+                Send
               </button>
             </form>
           </div>
@@ -105,16 +82,12 @@
     </div>
 
     <gws-modal v-if="modal.success || modal.error">
-      <template v-slot:header>
-        <div class="local-modal-header">FoodClub</div>
-      </template>
+      <template v-slot:header>FoodClub</template>
       <template v-slot:body>
-        <div class="local-modal-body">{{ modal.message }}</div>
+        {{ modal.message }}
       </template>
       <template v-slot:footer>
-        <div class="local-modal-footer">
-          <button class="btn btn-secondary" @click="onModalClose">OK</button>
-        </div>
+        <button class="btn btn-primary py-1" @click="onModalClose">OK</button>
       </template>
     </gws-modal>
   </div>
@@ -123,14 +96,9 @@
 <script>
 import axios from '@/axios-default';
 import useVuelidate from '@vuelidate/core';
-import { helpers, required, email, maxLength } from '@vuelidate/validators';
+import { required, email, maxLength } from '@vuelidate/validators';
 import ContactMap from '@/components/Map.vue';
 import Modal from '@/components/Modal.vue';
-
-const phoneRegex = helpers.regex(
-  'phoneRegex',
-  /^(\(?\+?55\)?)?[- ]?\(?\d{2}\)?[- ]?(\d{1})?[- ]?(\d{4})[- ]?(\d{4})$/
-);
 
 export default {
   name: 'AppMap',
@@ -146,13 +114,11 @@ export default {
       form: {
         name: '',
         email: '',
-        phone: '',
         message: '',
       },
       formValidationMessages: {
         name: '',
         email: '',
-        phone: '',
         message: '',
       },
       modal: {
@@ -168,9 +134,6 @@ export default {
     },
     formEmail() {
       return this.form.email;
-    },
-    formPhone() {
-      return this.form.phone;
     },
     formMessage() {
       return this.form.message;
@@ -202,16 +165,6 @@ export default {
           'The email must be a valid email address.';
       } else {
         this.formValidationMessages.email = '';
-      }
-    },
-    formPhone: function () {
-      if (!this.v$.form.phone.$dirty) {
-        return;
-      }
-      if (!this.v$.form.phone.phoneRegex) {
-        this.formValidationMessages.phone = 'The phone format is invalid.';
-      } else {
-        this.formValidationMessages.phone = '';
       }
     },
     formMessage: function () {
@@ -279,7 +232,6 @@ export default {
       this.v$.$reset();
       this.form.name = '';
       this.form.email = '';
-      this.form.phone = '';
       this.form.message = '';
     },
   },
@@ -295,9 +247,6 @@ export default {
           email,
           maxLength: maxLength(100),
         },
-        phone: {
-          phoneRegex,
-        },
         message: {
           required,
           maxLength: maxLength(1000),
@@ -309,21 +258,10 @@ export default {
 </script>
 
 <style scoped>
-.local-modal-header,
-.local-modal-body,
-.local-modal-footer {
-  padding: 0.5rem;
-  background-color: #fff;
-  width: 100%;
-}
-
-.local-modal-header {
-  text-align: left;
-  color: var(--primary);
-  font-weight: bold;
-}
-
-.local-modal-footer {
-  text-align: right;
+h1 {
+  font-family: PatrickHand, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--dark);
 }
 </style>
