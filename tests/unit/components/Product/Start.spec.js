@@ -1,6 +1,7 @@
 import { createStore } from 'vuex';
 import { faker } from '@faker-js/faker';
 import { flushPromises, mount } from '@vue/test-utils';
+import { generatePagination } from '../../../helpers';
 import axios from '@/axios-default';
 import Start from '@/components/Product/Start.vue';
 
@@ -29,28 +30,6 @@ describe('Start.vue', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    const generatePagination = (numberOfItems) => {
-      const perPage = faker.datatype.number({ min: 1, max: numberOfItems });
-      const isSameNumberOfItemsPerPage = numberOfItems % perPage === 0;
-      const totalPages = isSameNumberOfItemsPerPage
-        ? numberOfItems / perPage
-        : parseInt(numberOfItems / perPage) + 1;
-      const currentPage = faker.datatype.number({ min: 1, max: totalPages });
-      const isLastPage = currentPage === totalPages;
-      const lastPageCount = isSameNumberOfItemsPerPage
-        ? perPage
-        : parseInt(numberOfItems % perPage);
-      const count = isLastPage ? lastPageCount : perPage;
-
-      return {
-        count: count,
-        current_page: currentPage,
-        links: { next: faker.internet.url() },
-        per_page: perPage,
-        total: numberOfItems,
-        total_pages: totalPages,
-      };
-    };
     const numberOfItems = faker.datatype.number({ min: 1, max: 15 });
     const products = [];
     for (let i = 0; i < numberOfItems; i++) {
@@ -98,7 +77,7 @@ describe('Start.vue', () => {
 
     // ASSERT
     if (shouldShowPagination) {
-      expect(wrapper.get('nav[aria-label="Page navigation"]').exists()).toBe(
+      expect(wrapper.find('nav[aria-label="Page navigation"]').exists()).toBe(
         true
       );
     }
