@@ -46,6 +46,8 @@
 </template>
 
 <script>
+import { DEFAULT_NUMBERED_PAGE_BUTTONS } from '@/constants/pagination';
+
 export default {
   name: 'AppPagination',
   props: {
@@ -61,7 +63,7 @@ export default {
   computed: {
     maxNumberOfLinksToBeShown() {
       if (this.maxNumberOfLinksBeforeCurrentPage <= 1) {
-        return this.maxNumberOfLinksBeforeCurrentPage * 2 + 1; // force a minimum of 3 links to be shown
+        return DEFAULT_NUMBERED_PAGE_BUTTONS;
       }
 
       return this.maxNumberOfLinksBeforeCurrentPage * 2;
