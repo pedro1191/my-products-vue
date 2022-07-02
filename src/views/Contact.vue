@@ -96,18 +96,18 @@
 <script>
 import axios from '@/axios-default';
 import useVuelidate from '@vuelidate/core';
-import { required, email, maxLength } from '@vuelidate/validators';
+import { helpers, required, email, maxLength } from '@vuelidate/validators';
 import ContactMap from '@/components/Map.vue';
 import Modal from '@/components/Modal.vue';
 
 export default {
   name: 'AppMap',
-  setup() {
-    return { v$: useVuelidate() };
-  },
   components: {
     gwsMap: ContactMap,
     gwsModal: Modal,
+  },
+  setup() {
+    return { v$: useVuelidate() };
   },
   data() {
     return {
@@ -141,43 +141,13 @@ export default {
   },
   watch: {
     formName: function () {
-      if (!this.v$.form.name.$dirty) {
-        return;
-      }
-      if (!this.v$.form.name.maxLength) {
-        this.formValidationMessages.name = `The name may not be greater than ${this.v$.form.name.$params.maxLength.max} characters.`;
-      } else if (!this.v$.form.name.required) {
-        this.formValidationMessages.name = 'The name field is required.';
-      } else {
-        this.formValidationMessages.name = '';
-      }
+      this.setValidationMessage('name');
     },
     formEmail: function () {
-      if (!this.v$.form.email.$dirty) {
-        return;
-      }
-      if (!this.v$.form.email.maxLength) {
-        this.formValidationMessages.email = `The email may not be greater than ${this.v$.form.email.$params.maxLength.max} characters.`;
-      } else if (!this.v$.form.email.required) {
-        this.formValidationMessages.email = 'The email field is required.';
-      } else if (!this.v$.form.email.email) {
-        this.formValidationMessages.email =
-          'The email must be a valid email address.';
-      } else {
-        this.formValidationMessages.email = '';
-      }
+      this.setValidationMessage('email');
     },
     formMessage: function () {
-      if (!this.v$.form.message.$dirty) {
-        return;
-      }
-      if (!this.v$.form.message.maxLength) {
-        this.formValidationMessages.message = `The message may not be greater than ${this.v$.form.message.$params.maxLength.max} characters.`;
-      } else if (!this.v$.form.message.required) {
-        this.formValidationMessages.message = 'The message field is required.';
-      } else {
-        this.formValidationMessages.message = '';
-      }
+      this.setValidationMessage('message');
     },
   },
   methods: {
@@ -234,21 +204,42 @@ export default {
       this.form.email = '';
       this.form.message = '';
     },
+    setValidationMessage(key) {
+      if (!this.v$.form[key].$dirty) {
+        return;
+      }
+      if (this.v$.form[key].$invalid) {
+        this.formValidationMessages[key] = this.v$.form[key].$errors
+          .map((error) => error.$message)
+          .join('. ');
+      } else {
+        this.formValidationMessages[key] = null;
+      }
+    },
   },
   validations() {
     return {
       form: {
         name: {
-          required,
+          required: helpers.withMessage(
+            'The name field is required.',
+            required
+          ),
           maxLength: maxLength(100),
         },
         email: {
-          required,
+          required: helpers.withMessage(
+            'The email field is required.',
+            required
+          ),
           email,
           maxLength: maxLength(100),
         },
         message: {
-          required,
+          required: helpers.withMessage(
+            'The message field is required.',
+            required
+          ),
           maxLength: maxLength(1000),
         },
       },
