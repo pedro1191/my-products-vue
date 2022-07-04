@@ -14,6 +14,7 @@
       </template>
     </gws-modal>
   </div>
+  <gws-update-notifier></gws-update-notifier>
 </template>
 
 <script>
@@ -21,6 +22,7 @@ import Navbar from './components/Navbar.vue';
 import Footer from './components/Footer.vue';
 import Modal from './components/Modal.vue';
 import Spinner from './components/Spinner.vue';
+import UpdateNotifier from './components/UpdateNotifier.vue';
 
 export default {
   components: {
@@ -28,6 +30,7 @@ export default {
     gwsFooter: Footer,
     gwsModal: Modal,
     gwsSpinner: Spinner,
+    gwsUpdateNotifier: UpdateNotifier,
   },
   computed: {
     isLoading: function () {
