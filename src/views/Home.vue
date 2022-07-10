@@ -1,13 +1,13 @@
 <template>
-  <div class="container">
+  <div class="container-fluid pl-0 pr-lg-5">
     <header class="pt-4">
       <gws-banner />
     </header>
-    <section class="row pt-4">
-      <div class="col-md-4" v-if="showCategoriesMenu">
+    <section class="row pt-md-5">
+      <div class="col-12 col-sm-6 col-md-5 col-lg-4">
         <gws-categories :categories="categories"></gws-categories>
       </div>
-      <div class="col-md-8">
+      <div class="col-12 col-sm-6 col-md-7 col-lg-8">
         <gws-products-cards :products="products"></gws-products-cards>
       </div>
     </section>
@@ -49,9 +49,6 @@ export default {
     };
   },
   computed: {
-    showCategoriesMenu: function () {
-      return !this.$store.getters.isASmallDevice;
-    },
     categories: function () {
       return this.$store.getters.categories;
     },
