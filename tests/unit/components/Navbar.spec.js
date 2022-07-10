@@ -13,6 +13,9 @@ const createVuexStore = (screenWidth = 768, categories = []) => {
       };
     },
     getters: {
+      isASmallDevice(state) {
+        return state.screenWidth >= 576 && state.screenWidth < 768;
+      },
       isAnExtraSmallDevice(state) {
         return state.screenWidth < 576;
       },
@@ -56,7 +59,7 @@ describe('Navbar.vue', () => {
     });
   });
 
-  it('renders the nav links for small devices', () => {
+  it('renders the nav links for small devices', async () => {
     // ARRANGE
     const expectedCategories = [
       {
@@ -69,7 +72,7 @@ describe('Navbar.vue', () => {
       },
     ];
     const store = createVuexStore(
-      faker.datatype.number({ max: 767 }),
+      faker.datatype.number({ max: 575 }),
       expectedCategories
     );
     const expectedLinks = [
@@ -97,9 +100,11 @@ describe('Navbar.vue', () => {
     });
 
     // ACT
+    await wrapper.get('.navbar-toggler').trigger('click');
     const anchors = wrapper.findAll('.nav-item');
     const logoLink = wrapper.get('.navbar-brand');
     anchors.unshift(logoLink);
+    await wrapper.get('.dropdown-toggle').trigger('click');
     const categories = wrapper.get('.dropdown-menu').findAll('.dropdown-item');
 
     // ASSERT

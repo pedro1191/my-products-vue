@@ -17,61 +17,65 @@
       >
         Menu <font-awesome-icon class="ml-2" icon="fa-bars" />
       </button>
-      <div
-        class="collapse navbar-collapse"
-        id="navbarSupportedContent"
-        :class="{ show: mobileNavbarOpen }"
-      >
-        <ul class="navbar-nav m-auto">
-          <router-link class="nav-item" to="/" active-class="active" exact>
-            <li><a class="nav-link">Home</a></li>
-          </router-link>
-          <router-link class="nav-item" to="/about" active-class="active">
-            <li><a class="nav-link">About</a></li>
-          </router-link>
-          <li
-            class="nav-item dropdown"
-            :class="{ show: dropdownOpen, active: isCategoriesPage }"
-            v-if="showCategoriesMenu"
-          >
-            <a
-              class="nav-link dropdown-toggle"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              :aria-expanded="dropdownOpen"
-              @click="onDropdownClick"
+      <transition name="grow">
+        <div
+          class="collapse navbar-collapse show"
+          id="navbarSupportedContent"
+          v-if="mobileNavbarOpen || showMenu"
+        >
+          <ul class="navbar-nav m-auto">
+            <router-link class="nav-item" to="/" active-class="active" exact>
+              <li><a class="nav-link">Home</a></li>
+            </router-link>
+            <router-link class="nav-item" to="/about" active-class="active">
+              <li><a class="nav-link">About</a></li>
+            </router-link>
+            <li
+              class="nav-item dropdown"
+              :class="{ show: dropdownOpen, active: isCategoriesPage }"
+              v-if="showCategoriesMenu"
             >
-              Renowned Chefs
-            </a>
-            <div
-              class="dropdown-menu"
-              aria-labelledby="navbarDropdown"
-              :class="{ show: dropdownOpen }"
-            >
-              <gws-category
-                v-for="category in categories"
-                :key="category.id"
-                :category="category"
-                customClasses="dropdown-item"
+              <a
+                class="nav-link dropdown-toggle"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                :aria-expanded="dropdownOpen"
+                @click="onDropdownClick"
               >
-              </gws-category>
-            </div>
-          </li>
-          <router-link class="nav-item" to="/contact" active-class="active">
-            <li><a class="nav-link">Contact</a></li>
-          </router-link>
-          <a
-            class="nav-item"
-            :href="dashboardUrl"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            <li><a class="nav-link">Dashboard</a></li>
-          </a>
-        </ul>
-      </div>
+                Renowned Chefs
+              </a>
+              <transition name="grow">
+                <div
+                  class="dropdown-menu show"
+                  aria-labelledby="navbarDropdown"
+                  v-if="dropdownOpen"
+                >
+                  <gws-category
+                    v-for="category in categories"
+                    :key="category.id"
+                    :category="category"
+                    customClasses="dropdown-item"
+                  >
+                  </gws-category>
+                </div>
+              </transition>
+            </li>
+            <router-link class="nav-item" to="/contact" active-class="active">
+              <li><a class="nav-link">Contact</a></li>
+            </router-link>
+            <a
+              class="nav-item"
+              :href="dashboardUrl"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <li><a class="nav-link">Dashboard</a></li>
+            </a>
+          </ul>
+        </div>
+      </transition>
     </div>
   </nav>
 </template>
@@ -97,6 +101,12 @@ export default {
     };
   },
   computed: {
+    showMenu: function () {
+      return (
+        !this.$store.getters.isAnExtraSmallDevice &&
+        !this.$store.getters.isASmallDevice
+      );
+    },
     showCategoriesMenu: function () {
       return this.$store.getters.isAnExtraSmallDevice;
     },
@@ -150,5 +160,15 @@ export default {
 
 .nav-item.active .nav-link {
   color: var(--dark);
+}
+
+.dropdown-toggle::after {
+  transform: rotate(0deg);
+  transition: all 0.5s ease-in-out;
+}
+
+.dropdown.show .dropdown-toggle::after {
+  transform: rotate(180deg);
+  transition: all 0.5s ease-in-out;
 }
 </style>
