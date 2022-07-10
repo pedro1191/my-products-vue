@@ -1,17 +1,17 @@
 <template>
-  <div class="row flex-nowrap">
-    <div class="col col-md-auto text-left spicy">
-      <img alt="Spicy" :src="gwsSpicy" />
+  <div class="row">
+    <div class="col-4 col-md-auto spicy">
+      <img alt="Spicy" class="img-fluid" :src="gwsSpicy" />
     </div>
-    <div class="col headline" v-if="!isASmallDevice">
+    <div class="col headline" v-if="isAMediumDeviceOrBigger">
       <gws-banner-headline />
     </div>
-    <div class="col-8 col-md-auto text-right chef">
-      <img alt="Chef" :src="gwsChef" />
+    <div class="col-8 col-md-auto ml-auto chef">
+      <img alt="Chef" class="img-fluid" :src="gwsChef" />
     </div>
   </div>
-  <div class="row" v-if="isASmallDevice">
-    <div class="col">
+  <div class="row" v-if="!isAMediumDeviceOrBigger">
+    <div class="col headline">
       <gws-banner-headline />
     </div>
   </div>
@@ -34,41 +34,35 @@ export default {
     };
   },
   computed: {
-    isASmallDevice: function () {
-      return this.$store.getters.isASmallDevice;
+    isAMediumDeviceOrBigger: function () {
+      return (
+        !this.$store.getters.isAnExtraSmallDevice &&
+        !this.$store.getters.isASmallDevice
+      );
     },
   },
 };
 </script>
 
 <style scoped>
-.spicy,
-.headline {
+.spicy {
   padding-top: 3rem;
 }
 
-.spicy img {
-  width: 100%;
-}
-
-.chef img {
-  width: 100%;
+.headline {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  padding: 1.5rem 2.5rem;
 }
 
 @media (min-width: 768px) {
-  .chef img {
-    max-width: 250px;
-  }
-}
-
-@media (min-width: 992px) {
-  .spicy,
-  .headline {
-    padding-top: 5rem;
+  .spicy {
+    padding-top: 4rem;
   }
 
   .spicy img {
-    max-width: 130px;
+    max-width: 125px;
   }
 
   .chef img {

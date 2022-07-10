@@ -1,15 +1,33 @@
+import { createStore } from 'vuex';
 import { faker } from '@faker-js/faker';
 import { mount } from '@vue/test-utils';
 import { RouterLinkStub } from '@vue/test-utils';
 import Categories from '@/components/Categories.vue';
 
+const createVuexStore = (screenWidth = 576) => {
+  return createStore({
+    state() {
+      return {
+        screenWidth,
+      };
+    },
+    getters: {
+      isAnExtraSmallDevice(state) {
+        return state.screenWidth < 576;
+      },
+    },
+  });
+};
+
 describe('Categories.vue', () => {
   it('renders the props.title when passed', () => {
     // ARRANGE
+    const store = createVuexStore();
     const categories = [];
     const title = faker.lorem.words();
     const wrapper = mount(Categories, {
       global: {
+        plugins: [store],
         stubs: ['FontAwesomeIcon', 'RouterLink'],
       },
       props: {
@@ -27,9 +45,11 @@ describe('Categories.vue', () => {
 
   it('renders the feedback message when props.categories is empty', () => {
     // ARRANGE
+    const store = createVuexStore();
     const categories = [];
     const wrapper = mount(Categories, {
       global: {
+        plugins: [store],
         stubs: ['FontAwesomeIcon', 'RouterLink'],
       },
       props: { categories },
@@ -44,6 +64,7 @@ describe('Categories.vue', () => {
 
   it('renders the props.categories when passed', () => {
     // ARRANGE
+    const store = createVuexStore();
     const numberOfItems = faker.datatype.number({ min: 1, max: 5 });
     const categories = [];
     for (let i = 0; i < numberOfItems; i++) {
@@ -59,6 +80,7 @@ describe('Categories.vue', () => {
             query: {},
           },
         },
+        plugins: [store],
         stubs: {
           FontAwesomeIcon: true,
           RouterLink: RouterLinkStub,

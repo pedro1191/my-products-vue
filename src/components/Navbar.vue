@@ -98,7 +98,7 @@ export default {
   },
   computed: {
     showCategoriesMenu: function () {
-      return this.$store.getters.isASmallDevice;
+      return this.$store.getters.isAnExtraSmallDevice;
     },
     categories: function () {
       return this.$store.getters.categories;

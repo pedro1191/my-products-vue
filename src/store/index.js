@@ -18,7 +18,10 @@ export default createStore({
       return state.screenWidth >= 768 && state.screenWidth < 992;
     },
     isASmallDevice(state) {
-      return state.screenWidth < 768;
+      return state.screenWidth >= 576 && state.screenWidth < 768;
+    },
+    isAnExtraSmallDevice(state) {
+      return state.screenWidth < 576;
     },
     isLoading(state) {
       return state.thingsLoading > 0;
