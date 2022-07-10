@@ -78,7 +78,7 @@ export default {
   color: var(--dark);
 }
 
-main > .container {
+main > div {
   padding-top: var(--navbar-offset);
 }
 </style>
