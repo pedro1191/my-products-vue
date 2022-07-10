@@ -13,8 +13,8 @@ const createVuexStore = (screenWidth = 768, categories = []) => {
       };
     },
     getters: {
-      isASmallDevice(state) {
-        return state.screenWidth < 768;
+      isAnExtraSmallDevice(state) {
+        return state.screenWidth < 576;
       },
       categories(state) {
         return state.categories;
