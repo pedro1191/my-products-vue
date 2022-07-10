@@ -81,4 +81,21 @@ export default {
 main > div {
   padding-top: var(--navbar-offset);
 }
+
+.grow-enter-active {
+  animation: grow 0.5s;
+}
+.grow-leave-active {
+  animation: grow 0.25s reverse;
+}
+@keyframes grow {
+  0% {
+    max-height: 0px;
+    overflow: hidden;
+  }
+  100% {
+    max-height: 350px;
+    overflow: hidden;
+  }
+}
 </style>

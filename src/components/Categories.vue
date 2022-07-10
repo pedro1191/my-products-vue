@@ -6,26 +6,30 @@
     <div class="px-3 mx-auto">
       <div class="title my-4" @click="onCategoriesTitleClick">
         <h4 class="font-weight-bold">{{ title }}</h4>
-        <font-awesome-icon
-          class="ml-3"
-          size="2x"
-          icon="fa-minus"
-          v-if="showCategories"
-        />
-        <font-awesome-icon class="ml-3" size="2x" icon="fa-plus" v-else />
+        <transition name="zoom-in" mode="out-in">
+          <font-awesome-icon
+            class="ml-3"
+            size="2x"
+            icon="fa-minus"
+            v-if="showCategories"
+          />
+          <font-awesome-icon class="ml-3" size="2x" icon="fa-plus" v-else />
+        </transition>
       </div>
-      <div v-if="showCategories">
-        <ul class="list-group" v-if="categories.length > 0">
-          <gws-category
-            v-for="(category, index) in categories"
-            :key="index"
-            :category="category"
-            customClasses="list-group-item"
-          >
-          </gws-category>
-        </ul>
-        <h4 class="text-center text-muted" v-else>No categories found =/</h4>
-      </div>
+      <transition name="grow">
+        <div v-if="showCategories">
+          <ul class="list-group" v-if="categories.length > 0">
+            <gws-category
+              v-for="(category, index) in categories"
+              :key="index"
+              :category="category"
+              customClasses="list-group-item"
+            >
+            </gws-category>
+          </ul>
+          <h4 class="text-center text-muted" v-else>No categories found =/</h4>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -96,5 +100,20 @@ header img {
 
 .title * {
   margin: 0;
+}
+
+.zoom-in-enter-active {
+  animation: zoom-in 0.5s;
+}
+.zoom-in-leave-active {
+  animation: zoom-in 0.25s reverse;
+}
+@keyframes zoom-in {
+  0% {
+    transform: scaleY(0.5);
+  }
+  100% {
+    transform: scaleY(1);
+  }
 }
 </style>
