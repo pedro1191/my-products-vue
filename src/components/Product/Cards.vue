@@ -1,7 +1,7 @@
 <template>
   <div class="row" v-if="products.length > 0">
     <div
-      class="col-lg-4 col-sm-6 my-4"
+      class="col-xl-4 col-md-6 my-4"
       v-for="(product, index) in products"
       :key="index"
     >

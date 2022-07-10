@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col" v-if="product">
+    <div class="col pl-4 pl-sm-0 mt-4" v-if="product">
       <div class="card p-3 mx-auto" v-if="product">
         <div class="card-body">
           <h4 class="font-weight-bold text-capitalize">{{ product.name }}</h4>
