@@ -1,11 +1,11 @@
 <template>
   <div class="categories">
-    <header>
+    <header v-if="isASmallDeviceOrBigger">
       <img alt="Dinnerware" :src="gwsDinnerware" />
     </header>
-    <div class="pl-3">
+    <div class="px-3 mx-auto">
       <div class="title my-4" @click="onCategoriesTitleClick">
-        <h5 class="font-weight-bold">{{ title }}</h5>
+        <h4 class="font-weight-bold">{{ title }}</h4>
         <font-awesome-icon
           class="ml-3"
           size="2x"
@@ -55,6 +55,11 @@ export default {
       showCategories: true,
     };
   },
+  computed: {
+    isASmallDeviceOrBigger: function () {
+      return !this.$store.getters.isAnExtraSmallDevice;
+    },
+  },
   methods: {
     onCategoriesTitleClick() {
       this.showCategories = !this.showCategories;
@@ -76,6 +81,8 @@ header img {
 .categories {
   position: -webkit-sticky;
   position: sticky;
+  display: flex;
+  flex-direction: column;
   top: var(--navbar-offset);
 }
 
