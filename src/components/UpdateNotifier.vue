@@ -1,5 +1,5 @@
 <template>
-  <transition name="ease-in">
+  <transition name="fade-in">
     <div class="update-notifier bg-light" v-if="updateExists">
       <p>There is an update available!</p>
       <button
@@ -68,20 +68,5 @@ export default {
   z-index: 100;
   border: 1px solid var(--primary);
   text-align: center;
-}
-
-.ease-in-enter-active {
-  animation: ease-in 1s;
-}
-.ease-in-leave-active {
-  animation: ease-in 1s reverse;
-}
-@keyframes ease-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 </style>

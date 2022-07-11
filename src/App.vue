@@ -98,4 +98,18 @@ main > div {
     overflow: hidden;
   }
 }
+.fade-in-enter-active {
+  animation: fade-in 2s;
+}
+.fade-in-leave-active {
+  animation: fade-in 2s reverse;
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 </style>
