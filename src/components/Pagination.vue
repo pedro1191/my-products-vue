@@ -35,7 +35,7 @@
       <li class="page-item" :class="{ disabled: isLastPage }">
         <button
           class="page-link"
-          @click="onLinkClicked(pagination.total_pages)"
+          @click="onLinkClicked(pagination.last_page)"
           aria-label="Last"
         >
           <span aria-hidden="true">Last</span>
@@ -69,8 +69,8 @@ export default {
       return this.maxNumberOfLinksBeforeCurrentPage * 2;
     },
     pagesToBeShown() {
-      if (this.pagination.total_pages <= this.maxNumberOfLinksToBeShown) {
-        return this.getPages(1, this.pagination.total_pages);
+      if (this.pagination.last_page <= this.maxNumberOfLinksToBeShown) {
+        return this.getPages(1, this.pagination.last_page);
       }
 
       return this.getPages(this.getFirstLink(), this.getLastLink());
@@ -79,7 +79,7 @@ export default {
       return this.pagination.current_page === 1;
     },
     isLastPage() {
-      return this.pagination.current_page === this.pagination.total_pages;
+      return this.pagination.current_page === this.pagination.last_page;
     },
     previousPage() {
       if (this.isFirstPage) {
@@ -90,7 +90,7 @@ export default {
     },
     nextPage() {
       if (this.isLastPage) {
-        return this.pagination.total_pages;
+        return this.pagination.last_page;
       }
 
       return this.pagination.current_page + 1;
@@ -112,7 +112,7 @@ export default {
 
       while (
         start + (this.maxNumberOfLinksToBeShown - 1) >
-        this.pagination.total_pages
+        this.pagination.last_page
       ) {
         start--;
       }
@@ -122,9 +122,7 @@ export default {
     getLastLink() {
       const end = this.getFirstLink() + this.maxNumberOfLinksToBeShown - 1;
 
-      return end > this.pagination.total_pages
-        ? this.pagination.total_pages
-        : end;
+      return end > this.pagination.last_page ? this.pagination.last_page : end;
     },
     onLinkClicked(page) {
       this.$emit('onLinkClicked', page);

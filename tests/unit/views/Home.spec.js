@@ -75,8 +75,6 @@ describe('Home.vue', () => {
     );
     expect(section.html()).toContain('RENOWNED CHEFS');
     expect(axios.get).toHaveBeenCalledTimes(1);
-    expect(axios.get).toHaveBeenCalledWith('/products', {
-      params: { include: 'category' },
-    });
+    expect(axios.get).toHaveBeenCalledWith('/products');
   });
 });

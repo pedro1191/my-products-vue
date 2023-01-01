@@ -35,7 +35,7 @@ describe('Single.vue', () => {
       description: faker.lorem.sentence(),
       image: faker.image.dataUri(),
       category: {
-        data: { name: faker.name.findName() },
+        name: faker.name.findName(),
       },
     };
     mockedProduct = {
@@ -69,12 +69,10 @@ describe('Single.vue', () => {
     // ASSERT
     expect(goBackButton.text()).toBe('Go Back');
     expect(wrapper.text()).toContain(product.name);
-    expect(wrapper.text()).toContain(product.category.data.name);
+    expect(wrapper.text()).toContain(product.category.name);
     expect(wrapper.text()).toContain(product.description);
     expect(axios.get).toHaveBeenCalledTimes(1);
-    expect(axios.get).toHaveBeenCalledWith(`/products/${product.id}`, {
-      params: { include: 'category' },
-    });
+    expect(axios.get).toHaveBeenCalledWith(`/products/${product.id}`);
   });
 
   it('shows the feedback message when the loading fails', async () => {
@@ -109,8 +107,6 @@ describe('Single.vue', () => {
       'The specified resource has not been found =/'
     );
     expect(axios.get).toHaveBeenCalledTimes(1);
-    expect(axios.get).toHaveBeenCalledWith(`/products/${productId}`, {
-      params: { include: 'category' },
-    });
+    expect(axios.get).toHaveBeenCalledWith(`/products/${productId}`);
   });
 });

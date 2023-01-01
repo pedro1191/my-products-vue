@@ -8,7 +8,7 @@
           {{ product.name }}
         </router-link>
       </h6>
-      <small>{{ product.category.data.name }}</small>
+      <small>{{ product.category.name }}</small>
     </div>
     <div class="card-body">
       <router-link :to="{ name: 'productsSingle', params: { id: product.id } }">

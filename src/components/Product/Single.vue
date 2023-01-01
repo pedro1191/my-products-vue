@@ -4,7 +4,7 @@
       <div class="card p-3 mx-auto" v-if="product">
         <div class="card-body">
           <h4 class="font-weight-bold text-capitalize">{{ product.name }}</h4>
-          <h6 class="mb-0">{{ product.category.data.name }}</h6>
+          <h6 class="mb-0">{{ product.category.name }}</h6>
           <img
             class="card-img-top img-fluid my-4"
             :src="product.image"
@@ -60,9 +60,7 @@ export default {
       this.$store.dispatch('setLoading', true);
 
       axios
-        .get(`/products/${this.$route.params.id}`, {
-          params: { include: 'category' },
-        })
+        .get(`/products/${this.$route.params.id}`)
         .then((response) => {
           this.onStopLoading();
           this.product = response.data.data;

@@ -24,9 +24,9 @@ describe('Pagination.vue', () => {
         ? DEFAULT_NUMBERED_PAGE_BUTTONS
         : maxNumberOfLinksBeforeCurrentPage * 2;
     const pagesButtonsLength =
-      pagination.total_pages > maxVisiblePageButtons
+      pagination.last_page > maxVisiblePageButtons
         ? maxVisiblePageButtons
-        : pagination.total_pages;
+        : pagination.last_page;
 
     // ACT
     const firstButton = wrapper.find('button[aria-label="First"]');
@@ -58,7 +58,7 @@ describe('Pagination.vue', () => {
     const firstPage = 1;
     const previousPage =
       pagination.current_page > 1 ? pagination.current_page - 1 : firstPage;
-    const lastPage = pagination.total_pages;
+    const lastPage = pagination.last_page;
     const nextPage =
       pagination.current_page < lastPage
         ? pagination.current_page + 1

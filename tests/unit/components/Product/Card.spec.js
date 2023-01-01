@@ -12,7 +12,7 @@ describe('Card.vue', () => {
       description: faker.lorem.sentence(),
       image: faker.image.dataUri(),
       category: {
-        data: { name: faker.name.findName() },
+        name: faker.name.findName(),
       },
     };
     const wrapper = mount(Card, {
@@ -33,7 +33,7 @@ describe('Card.vue', () => {
       name: 'productsSingle',
       params: { id: product.id },
     });
-    expect(wrapper.text()).toContain(product.category.data.name);
+    expect(wrapper.text()).toContain(product.category.name);
     expect(wrapper.get('img').attributes('src')).toBe(product.image);
   });
 });

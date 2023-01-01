@@ -39,7 +39,7 @@ describe('Start.vue', () => {
         description: faker.lorem.sentence(),
         image: faker.image.dataUri(),
         category: {
-          data: { name: faker.name.findName() },
+          name: faker.name.findName(),
         },
       });
     }
@@ -69,8 +69,7 @@ describe('Start.vue', () => {
         stubs: ['RouterLink'],
       },
     });
-    const shouldShowPagination =
-      mockProductList.data.meta.pagination.total_pages > 1;
+    const shouldShowPagination = mockProductList.data.meta.last_page > 1;
 
     // ACT
     await flushPromises();
@@ -85,7 +84,6 @@ describe('Start.vue', () => {
     expect(axios.get).toHaveBeenCalledWith('/products', {
       params: {
         category_id: categoryId,
-        include: 'category',
         page: 1,
       },
     });
