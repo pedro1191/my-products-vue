@@ -6,7 +6,7 @@
         <p><strong>Version:</strong> 2.0.0</p>
         <p>
           This is a Progressive Web Application built using Vue.js that shows
-          things divided by categories. It links a Dashboard with authentication
+          items divided by categories. It links a Dashboard with authentication
           where the administrator can manage them and consumes a
           <a
             class="text-danger"

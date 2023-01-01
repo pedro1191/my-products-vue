@@ -76,6 +76,6 @@ describe('Contact.vue', () => {
 
     // ASSERT
     expect(axios.post).toHaveBeenCalledTimes(1);
-    expect(axios.post).toHaveBeenCalledWith('/contacts', messageData);
+    expect(axios.post).toHaveBeenCalledWith('/messages', messageData);
   });
 });

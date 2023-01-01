@@ -162,7 +162,7 @@ export default {
       }
 
       axios
-        .post('/contacts', data)
+        .post('/messages', data)
         .then(() => {
           this.onStopLoading();
           this.modal.success = true;
