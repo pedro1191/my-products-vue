@@ -2,7 +2,7 @@
   "baseUrl": "http://localhost:8083",
   "env": {
     "VUE_APP_DASHBOARD_APP_URL": "https://dashboard.foodclub.pedrohsalmeida.com",
-    "VUE_APP_DEFAULT_BACKEND_API_URL": "https://api.foodclub.pedrohsalmeida.com/api/v1"
+    "VUE_APP_DEFAULT_BACKEND_API_URL": "https://api.dashboard.foodclub.pedrohsalmeida.com"
   },
   "pluginsFile": "tests/e2e/plugins/index.js"
 }

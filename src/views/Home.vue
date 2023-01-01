@@ -60,14 +60,8 @@ export default {
     getProducts() {
       this.$store.dispatch('setLoading', true);
 
-      const params = {
-        params: {
-          include: 'category',
-        },
-      };
-
       axios
-        .get('/products', params)
+        .get('/products')
         .then((response) => {
           this.onStopLoading();
           this.products = response.data.data;
