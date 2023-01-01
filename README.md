@@ -2,7 +2,7 @@
 
 Hello and welcome!
 
-This is a Progressive Web Application built using [Vue.js](https://vuejs.org/) that shows things divided by categories. It links a [Dashboard](https://github.com/pedro1191/my-products-dashboard-vue) with authentication where the administrator can manage them and consumes a [REST API](https://github.com/pedro1191/my-products-rest) to load the categories and send contact messages. The "theme" chosen here relates to culinary, but it could have been anything else.
+This is a Progressive Web Application built using [Vue.js](https://vuejs.org/) that shows items divided by categories. It links a [Dashboard](https://github.com/pedro1191/my-products-dashboard-vue) with authentication where the administrator can manage them and consumes a [REST API](https://github.com/pedro1191/my-products-dashboard-rest) to load the categories and send contact messages. The "theme" chosen here relates to culinary, but it could have been anything else.
 
 The following technologies are being used:
 - [axios](https://github.com/axios/axios): to consume the [REST API](https://github.com/pedro1191/my-products-rest)
@@ -30,7 +30,7 @@ cp .env.example .env.local
 
 - **PORT**: optional. The port in which the application should run
 - **VUE_APP_DASHBOARD_APP_URL**: mandatory. It should point to a running instance of the [Dashboard](https://github.com/pedro1191/my-products-dashboard-vue) it links
-- **VUE_APP_DEFAULT_BACKEND_API_URL**: mandatory. It should point to a running instance of the [REST API](https://github.com/pedro1191/my-products-rest) it consumes
+- **VUE_APP_DEFAULT_BACKEND_API_URL**: mandatory. It should point to a running instance of the [REST API](https://github.com/pedro1191/my-products-dashboard-rest) it consumes
 
 ### Compiles and hot-reloads for development
 ```
