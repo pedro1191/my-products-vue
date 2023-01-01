@@ -29,7 +29,7 @@ describe('Cards.vue', () => {
         description: faker.lorem.sentence(),
         image: faker.image.dataUri(),
         category: {
-          data: { name: faker.name.findName() },
+          name: faker.name.findName(),
         },
       });
     }
@@ -49,7 +49,7 @@ describe('Cards.vue', () => {
     expect(cards.length).toBe(products.length);
     cards.forEach((card, index) => {
       expect(card.text()).toContain(products[index].name);
-      expect(card.text()).toContain(products[index].category.data.name);
+      expect(card.text()).toContain(products[index].category.name);
       expect(card.get('img').attributes('src')).toBe(products[index].image);
     });
   });
