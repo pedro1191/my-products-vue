@@ -5,7 +5,7 @@ Hello and welcome!
 This is a Progressive Web Application built using [Vue.js](https://vuejs.org/) that shows items divided by categories. It links a [Dashboard](https://github.com/pedro1191/my-products-dashboard-vue) with authentication where the administrator can manage them and consumes a [REST API](https://github.com/pedro1191/my-products-dashboard-rest) to load the categories and send contact messages. The "theme" chosen here relates to culinary, but it could have been anything else.
 
 The following technologies are being used:
-- [axios](https://github.com/axios/axios): to consume the [REST API](https://github.com/pedro1191/my-products-rest)
+- [axios](https://github.com/axios/axios): to consume the [REST API](https://github.com/pedro1191/my-products-dashboard-rest)
 - [bootstrap](https://getbootstrap.com/)
 - [commitlint](https://github.com/conventional-changelog/commitlint) and [husky](https://github.com/typicode/husky): to control commit messages
 - [cypress](https://www.cypress.io/): for end-to-end testing
